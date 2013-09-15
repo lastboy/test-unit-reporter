@@ -71,17 +71,17 @@ module.exports = function () {
         if (config.data) {
 
             if (_typedas.isObject(config.data)) {
-                item = config.data["body"];
+                item = ((config.data["body"] && !((_typedas.isArray(config.data["body"]) && config.data["body"].length <= 0))) ? config.data["body"] : undefined);
 
                 if (item) {
 
                     if (_typedas.isObject(item)) {
-                        out.push( _compile({data: item, clazz:{type: item.type}}));
+                        out.push(_compile({data: item, clazz: {type: item.type}}));
 
-                    } else if (_typedas.isArray(item)) {
+                    } else if (_typedas.isArray(item) && item.length > 0) {
 
-                        item.forEach(function(body) {
-                            out.push(_compile({data: body.data, clazz:{type: body.type}}));
+                        item.forEach(function (body) {
+                            out.push(_compile({data: (body.members ? body.members : body), clazz: {type: (body.type || body.config.type)}}));
                         });
 
 
@@ -103,13 +103,13 @@ module.exports = function () {
         }
     }
 
-    function aggregateNestedConfig(root, targetconfig) {
-        targetconfig = root;
-        if (root.children.length > 0) {
-
-            aggregateNestedConfig()
-        }
-    }
+//    function aggregateNestedConfig(root, targetconfig) {
+//        targetconfig = root;
+//        if (root.children.length > 0) {
+//
+//            aggregateNestedConfig()
+//        }
+//    }
 
     _me = {
 
@@ -136,8 +136,8 @@ module.exports = function () {
                 return undefined;
             }
 
-            return _compile(config);
-
+            var _root = _me.create(config);
+            return {model: _root, output: _root.compile()};
         },
 
         /**
@@ -175,18 +175,23 @@ module.exports = function () {
 
         initTestClass: function (config) {
 
-            var key;
+            var key, me = this,
+                bodyconfig = (config.data ? config.data.body : undefined);
 
-            this.children = [];
+            this.body = [];
+            this.data = {};
 
             this.members = {};
             this.classobj = _getclassObject(config.type);
             this.config = (this.classobj ? this.classobj.config : undefined);
 
+            this.members["body"] = this.body;
+
             if (this.config && this.config.spec && config.data) {
                 // Create a based spec members for the target class
                 for (key in this.config.spec) {
                     this.members[key] = config.data[key];
+                    this.data[key] = config.data[key];
                 }
             }
 
@@ -196,6 +201,7 @@ module.exports = function () {
 
             this.set = function (key, value) {
                 this.members[key] = value;
+                this.data[key] = value;
             };
 
             /**
@@ -203,27 +209,41 @@ module.exports = function () {
              *
              * @param element
              */
-            this.add = function(element) {
-                this.children.push(element);
+            this.add = function (element) {
+                if (element) {
+                    this.body.push(element);
+                }
             };
 
             /**
              * Remove child element
              */
-            this.remove = function() {
+            this.remove = function () {
                 // TODO TBD
                 _log.warn("Not implemented (in the TODO list)");
             }
 
             this.compile = function () {
-                var key, config = {data:{}, clazz:{}};
+                var key, config = {data: {}, clazz: {}};
                 for (key in this.members) {
                     config.data[key] = this.get(key);
                 }
                 config.clazz = this.config;
-                return _me.generate(config);
+                //config.type = this.config.type;
+                return _compile(config);
 
             }
+
+            if (bodyconfig) {
+                bodyconfig.forEach(function (body) {
+                    var model;
+                    if (body) {
+                        model = _me.create(body);
+                        me.add(model);
+                    }
+                });
+            }
+
         }
     };
 

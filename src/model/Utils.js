@@ -41,7 +41,7 @@ module.exports = function() {
 
         generate: function(config) {
             // incoming external configuration , generate immediate flag
-            config["$immediate"] = true;
+           // config["$immediate"] = true;
             return _base("generate", config);
         }
     };

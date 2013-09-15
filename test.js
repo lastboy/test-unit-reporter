@@ -2,7 +2,7 @@ console.log("JUnit Model Reporter Test....");
 var jmr = require('./jmr.js');
 
 function generateTest() {
-    var out = jmr.generate({
+    var obj = jmr.generate({
         type: "model.testsuites",
         data: {
             disabled: "false",
@@ -20,7 +20,8 @@ function generateTest() {
         }
     });
 
-    console.log("out: ", out);
+    console.log("model: ", obj.model);
+    console.log("out: ", obj.output);
 }
 
 function apiTest() {
@@ -41,6 +42,7 @@ function apiTest() {
         }
     });
 
+    testcase.add(failure);
     testcase.add(failure);
 
     console.log("Class: ", testcase);

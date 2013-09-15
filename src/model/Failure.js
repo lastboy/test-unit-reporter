@@ -30,6 +30,7 @@ module.exports = function () {
 
             _class = new _TestClass(config);
 
+            return _class;
         }
     };
 

@@ -29,6 +29,7 @@ module.exports = function () {
         create: function (config) {
 
             _class = new _TestClass(config);
+            return _class;
 
         }
     };

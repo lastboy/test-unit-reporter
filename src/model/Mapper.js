@@ -20,7 +20,7 @@ var _enum = require("./Enum.js"),
     _map[_enum.TESTCASE] = _tcase,
     _map[_enum.ERROR] = _err,
     _map[_enum.SKIPPED] = _skipped,
-    _map[_enum.FAILUER] = _failure,
+    _map[_enum.FAILURE] = _failure,
     _map[_enum.SYSTEM] = _sys
 
 })();
