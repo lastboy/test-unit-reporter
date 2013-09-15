@@ -1,6 +1,8 @@
 JUnit Model Reporter
 =====================
 
+#(WIP) I'll update this readme when this project is ready to be used, also you'll get it as npm
+
 <p>Create a pure JavaScript Object Model based on JUnit</p>
 
 <strong>Currently Supported:</strong>
