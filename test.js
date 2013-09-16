@@ -1,6 +1,7 @@
 console.log("JUnit Model Reporter Test....");
 var jmr = require('./jmr.js');
 
+// TODO check what tests should count...
 function generateTest() {
     var obj = jmr.generate({
         type: "model.testsuites",
@@ -9,12 +10,26 @@ function generateTest() {
             body: [{
                 type: "model.testsuite",
                 data: {
-                    id: "$2"
-                }
-            },{
-                type: "model.testsuite",
-                data: {
-                    id: "$1"
+                    id: "$2",
+                    body: [{
+                        type: "model.testcase",
+                        data: {
+                            time: "now",
+                            body: [{
+                                type: "model.failure",
+                                data: {
+                                    message: "This is a faulire message",
+                                    type: "SomeAssertionBal"
+                                }
+                            },{
+                                type: "model.failure",
+                                data: {
+                                    message: "This is a faulire message",
+                                    type: "SomeAssertionBal"
+                                }
+                            }]
+                        }
+                    }]
                 }
             }]
         }

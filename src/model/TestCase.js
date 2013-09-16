@@ -1,5 +1,6 @@
 var _base = require("./Base.js"),
-    _enum = require("./Enum.js");
+    _enum = require("./Enum.js"),
+    _typedas = require("typedas");
 
 _base.add(
     {

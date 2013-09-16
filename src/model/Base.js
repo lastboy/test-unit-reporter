@@ -1,4 +1,5 @@
-var _utils = requirext("jmr.utils"),
+var _jsutils = require("js.utils"),
+    _utils = requirext("jmr.utils"),
     _log = _utils.logger(),
     _typedas = require("typedas"),
     _tplutils = requirext("jmr.tpl.utils"),
@@ -61,8 +62,9 @@ module.exports = function () {
     function _compile(config) {
 
         var out = [], item, type = config.clazz.type,
+            impl = config.impl,
             obj = _getclassObject(type),
-            clazz, tpl;
+            clazz, tpl, collection;
 
         if (obj) {
             clazz = obj.get("clazz");
@@ -71,30 +73,31 @@ module.exports = function () {
         if (config.data) {
 
             if (_typedas.isObject(config.data)) {
-                item = ((config.data["body"] && !((_typedas.isArray(config.data["body"]) && config.data["body"].length <= 0))) ? config.data["body"] : undefined);
+                item = impl.children();
 
+                // In case of children
                 if (item) {
 
-                    if (_typedas.isObject(item)) {
-                        out.push(_compile({data: item, clazz: {type: item.type}}));
+                    item.forEach(function (body) {
 
-                    } else if (_typedas.isArray(item) && item.length > 0) {
+                        out.push(_compile({impl: body, data: (body.members ? body.members : body), clazz: {type: (body.type || body.config.type)}}));
+                    });
 
-                        item.forEach(function (body) {
-                            out.push(_compile({data: (body.members ? body.members : body), clazz: {type: (body.type || body.config.type)}}));
-                        });
-
-
-                    } else {
-                        out.push(item);
+                    if (config.impl.collect) {
+                        collection = config.impl.collect.call(config.impl);
+                        if (collection) {
+                            impl.setall(collection);
+                            _jsutils.Object.copy(collection, config.data);
+                        }
                     }
+
 
                 }
 
                 config.data["body"] = out.join("");
                 return _tplutils.template({
                     name: ["_", tpl].join(""),
-                    path: "./src/model/templates/",
+                    path: global.jmr.reporter.templateUrl,
                     data: {
                         data: config.data
                     }
@@ -102,14 +105,6 @@ module.exports = function () {
             }
         }
     }
-
-//    function aggregateNestedConfig(root, targetconfig) {
-//        targetconfig = root;
-//        if (root.children.length > 0) {
-//
-//            aggregateNestedConfig()
-//        }
-//    }
 
     _me = {
 
@@ -183,6 +178,9 @@ module.exports = function () {
 
             this.members = {};
             this.classobj = _getclassObject(config.type);
+            this.getType = function() {
+              return config.type;
+            };
             this.config = (this.classobj ? this.classobj.config : undefined);
 
             this.members["body"] = this.body;
@@ -199,10 +197,31 @@ module.exports = function () {
                 return this.members[key];
             };
 
+            this.setall = function(item) {
+
+                var key, value;
+                if (item && _typedas.isObject(item)) {
+
+                    for (key in item) {
+                        if (item.hasOwnProperty(key)) {
+                            value = item[key];
+                            me.set(key, value);
+                        }
+                    }
+
+                } else {
+                    _log.warn("[test.unit base.setall] No valid arguments, expected of type Object ");
+                }
+            }
+
             this.set = function (key, value) {
                 this.members[key] = value;
                 this.data[key] = value;
             };
+
+            this.children = function() {
+                return ( (this.body && this.body.length > 0) ? this.body : null);
+            }
 
             /**
              * Add child element
@@ -229,10 +248,11 @@ module.exports = function () {
                     config.data[key] = this.get(key);
                 }
                 config.clazz = this.config;
+                config.impl = this;
                 //config.type = this.config.type;
                 return _compile(config);
 
-            }
+            };
 
             if (bodyconfig) {
                 bodyconfig.forEach(function (body) {
