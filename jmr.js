@@ -1,6 +1,8 @@
 'use strict';
 
-var _reporters,
+var _jsutils = require("js.utils"),
+    _path = require("path"),
+    _reporters,
     _utils,
     _log,
     _mutils,
@@ -22,24 +24,33 @@ var _reporters,
         "jmr.tpl.utils": "./src/utils/TemplateUtils.js"
     };
 
+    // supported reporters
+    _reporters = [
+        "junit"
+    ];
+
     _getReporter = function (key) {
 
-        var mdata = _reporters[key];
+        var mdata = (_jsutils.Object.contains(_reporters, key) ? key : undefined),
+            modelobj,
+            model;
 
-        if (!mdata) {
+        if (mdata) {
+            try {
+                modelobj = require(["./src/reporter", key, "Reporter.js"].join("/"));
+                if (modelobj) {
+                    model = modelobj.model();
+                }
+            } catch(e) {
+                // do nothing
+            }
+        }
+
+        if (!model) {
             console.log("[Test Unit Reporter] no valid reporter named: ", key);
             return undefined;
         }
-        return {
-            templateUrl: require("path").join(_reporters.root, key, "templates")
-        }
-    };
-
-    _reporters = {
-        root: "./src/reporter",
-        junit: {
-            name: "junit"
-        }
+        return model;
     };
 
     global.jmr = {};
@@ -104,12 +115,52 @@ module.exports = function () {
 
             return _base("create", config);
 
-
         },
 
+        /**
+         * Generate report output
+         *
+         * @param config
+         * @returns {*}
+         */
         generate: function (config) {
 
             return _base("generate", config)
+        },
+
+        /**
+         * Validate the report if supported by the reporter
+         *
+         * @param report
+         * @returns {boolean}
+         */
+        validate: function(report) {
+            var bool = false;
+
+            if (global.jmr.reporter.validate) {
+                bool = global.jmr.reporter.validate(report);
+
+            } else {
+                _log.wraning("[TestUnitReporter] 'validate' method is not supported for reporter: '" + global.jmr.reporter.get('name') + "'");
+            }
+
+            return bool;
+        },
+
+        /**
+         * Generate report if supporter by the reporter
+         *
+         * @param config
+         */
+        report: function(config) {
+
+            if (global.jmr.reporter.report) {
+                global.jmr.reporter.report(config);
+
+            } else {
+                _log.wraning("[TestUnitReporter] 'report' method is not supported for reporter: '" + global.jmr.reporter.get('name') + "'");
+            }
+
         }
 
     };

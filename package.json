@@ -1,46 +1,49 @@
 {
-  "name": "junit-model-reporter",
-  "description": "Create JavaScript JUnit Object Model with Reporter",
-  "version": "0.0.1",
-  "author": "Arik Lewin (https://github.com/lastboy)",
-  "homepage": "https://github.com/lastboy",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/lastboy/junit-model-reporter.git"
-  },
-  "bugs": {
-    "url": "http://github.com/lastboy/junit-model-reporter/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/lastboy/junit-model-reporter/LICENSE-MIT"
-    }
-  ],
-  "main": "junitmr.js",
-  "scripts": {
-    "test": "node test.js"
-  },
-  "engines": {
-    "node": ">= 0.8.0"
-  },
-  "keywords": [
-    "junit",
-    "model",
-    "xml",
-    "jenkins",
-    "ant",
-    "report"
-  ],
-  "dependencies": {
-    "typedas": "~1.0.0",
-    "underscore": "~1.5.2",
-    "js.utils": "0.0.1"
-  },
-  "devDependencies": {},
-  "contributors": [
-    "Arik Lewin (https://github.com/lastboy)"
-  ],
-  "_from": "junit-model-reporter@~0.0.1",
-  "license": "MIT"
+    "name": "junit-model-reporter",
+    "description": "Create JavaScript JUnit Object Model with Reporter",
+    "version": "0.0.1",
+    "author": "Arik Lewin (https://github.com/lastboy)",
+    "homepage": "https://github.com/lastboy",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/lastboy/junit-model-reporter.git"
+    },
+    "bugs": {
+        "url": "http://github.com/lastboy/junit-model-reporter/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://github.com/lastboy/junit-model-reporter/LICENSE-MIT"
+        }
+    ],
+    "main": "junitmr.js",
+    "scripts": {
+        "test": "node test.js"
+    },
+    "engines": {
+        "node": ">= 0.8.0"
+    },
+    "keywords": [
+        "junit",
+        "model",
+        "xml",
+        "jenkins",
+        "ant",
+        "report"
+    ],
+    "dependencies": {
+        "typedas": "~1.0.0",
+        "underscore": "~1.5.2",
+        "js.utils": "~0.0.1",
+        "libxmljs": "~0.8.1"
+    },
+    "devDependencies": {
+        "ant": "~0.2.0"
+    },
+    "contributors": [
+        "Arik Lewin (https://github.com/lastboy)"
+    ],
+    "_from": "junit-model-reporter@~0.0.1",
+    "license": "MIT"
 }

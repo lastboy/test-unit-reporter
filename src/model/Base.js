@@ -97,7 +97,7 @@ module.exports = function () {
                 config.data["body"] = out.join("");
                 return _tplutils.template({
                     name: ["_", tpl].join(""),
-                    path: global.jmr.reporter.templateUrl,
+                    path: global.jmr.reporter.getTemplateURL(),
                     data: {
                         data: config.data
                     }

@@ -3,6 +3,7 @@ var jmr = require('./jmr.js');
 
 // TODO check what tests should count...
 function generateTest() {
+
     var obj = jmr.generate({
         type: "model.testsuites",
         data: {
@@ -35,8 +36,14 @@ function generateTest() {
         }
     });
 
+
     console.log("model: ", obj.model);
     console.log("out: ", obj.output);
+
+    // validate the report agains the junit xsd
+    console.log("\nValidating report, the report is: " + (jmr.validate(obj.output) ? "valid" : "not valid"));
+
+
 }
 
 function apiTest() {
