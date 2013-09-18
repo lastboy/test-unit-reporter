@@ -43,7 +43,10 @@ function generateTest() {
     // validate the report agains the junit xsd
     console.log("\nValidating report, the report is: " + (jmr.validate(obj.output) ? "valid" : "not valid"));
 
-
+    jmr.report({
+        reportsdir:"./tests/reports",
+        testsdir: "./tests"
+    });
 }
 
 function apiTest() {

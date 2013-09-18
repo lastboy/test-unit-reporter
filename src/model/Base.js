@@ -2,7 +2,7 @@ var _jsutils = require("js.utils"),
     _utils = requirext("jmr.utils"),
     _log = _utils.logger(),
     _typedas = require("typedas"),
-    _tplutils = requirext("jmr.tpl.utils"),
+    _tplutils = require("js.utils").Template,
     _,
     _mapper;
 

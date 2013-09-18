@@ -21,7 +21,7 @@ var _jsutils = require("js.utils"),
         "jmr.model.utils": "./src/model/Utils.js",
 
         "jmr.utils": "./src/utils/Utils.js",
-        "jmr.tpl.utils": "./src/utils/TemplateUtils.js"
+        "jmr.utils.ant": "./src/utils/AntUtils.js"
     };
 
     // supported reporters
@@ -55,9 +55,14 @@ var _jsutils = require("js.utils"),
 
     global.jmr = {};
 
+    global.jmrbase = _path.resolve('./');
+
     global.requirext = function (key) {
 
         var moduleName = _requireIndex[key];
+        if (!moduleName) {
+            _log.warn("[jmr requirext] module name is not valid according to the key: ", key);
+        }
         return require(moduleName);
     };
 
