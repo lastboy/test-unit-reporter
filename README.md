@@ -141,7 +141,7 @@ In case you generates an object with all of your data, much simpler to burst it 
     + key {String} The key name of the reporter (currently "junit" (default) supported only)
 
 
-#### Contribute
+## Contribute
 This package can be extended to support additional reporters.
 
 * Create a folder name based on your reporter name e.g. ./src/reporter/dot
