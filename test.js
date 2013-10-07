@@ -100,8 +100,10 @@ function apiTest() {
 
 (function() {
 
-    if (!fs.exists)
-    fs.mkdirSync("./tests");
+    var testfolder = "./tests";
+    if (!fs.existsSync(testfolder)) {
+        fs.mkdirSync(testfolder);
+    }
 
     console.log("\n\n** API Test ************");
     apiTest();
