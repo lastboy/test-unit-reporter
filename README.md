@@ -37,7 +37,7 @@ The model can be crated using an API like so:
             type: "model.failure",
             data: {
                 message: "This is a faulire message",
-                type: "SomeAssertionBal"
+                type: "failure"
             }
         });
 
