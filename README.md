@@ -5,9 +5,10 @@ Test Unit Reporter
 Create a pure JavaScript object mode based on JUnit methodology and produce a report based on that model.<br/>
 This module can be easily extended to any report style you need.<br/>
 Currently this module supports JUnit xml reporter including:
+</p>
 * validation against junit.xsd
 * Report utility that generates a local HTML report for you to validate before it gets to the e.g. Jenkins
-</p>
+
 
 ## How To
 The JUnit classes are available with their properties according to the junit.xsd
