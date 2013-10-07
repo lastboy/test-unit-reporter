@@ -1,11 +1,10 @@
 Test Unit Reporter
 =====================
 
-<p>
 Create a pure JavaScript object mode based on JUnit methodology and produce a report based on that model.<br/>
 This module can be easily extended to any report style you need.<br/>
 Currently this module supports JUnit xml reporter including:
-</p>
+
 * validation against junit.xsd
 * Report utility that generates a local HTML report for you to validate before it gets to the e.g. Jenkins
 
@@ -13,8 +12,8 @@ Currently this module supports JUnit xml reporter including:
 ## How To
 The JUnit classes are available with their properties according to the junit.xsd
 
-### First create a simple model
 
+### First create a simple model
 The model can be crated using an API like so:
 
      var testcase,
@@ -41,6 +40,7 @@ The model can be crated using an API like so:
             }
         });
 
+
 ### With that :
 You can validate your model against the XSD file:
 
@@ -48,6 +48,7 @@ You can validate your model against the XSD file:
     var output = testsuite.compile();
     // validate the output against the XSD file
     jmr.validate(out)
+
 
 ### And then
 You can create an HTML site using Ant Reporter.
@@ -61,6 +62,7 @@ You can create an HTML site using Ant Reporter.
             reportsdir:"tests/reports",
             testsdir: "tests"
         });}
+
 
 ### Another example
 In case you generates an object with all of your data, much simpler to burst it like so:
@@ -96,6 +98,7 @@ In case you generates an object with all of your data, much simpler to burst it 
         }
     });
 
+
 ## Reference
 
 <br/>
@@ -107,6 +110,7 @@ In case you generates an object with all of your data, much simpler to burst it 
         + data - The class data
             + available specification properties (id, name, disabled, etc...)
             + body - the class children, can be a nested class or a string value
+
 
 <p>Generate an object model according to a given configuration</p>
 
@@ -120,9 +124,11 @@ In case you generates an object with all of your data, much simpler to burst it 
     + output {String} The generate output model
     + model {Object} The generated object model
 
+
 <p>Validate the report (if supported by the reporter)</p>
 * validate(report)
     + report {String} The generated output mode
+
 
 <p>Generate a report (if supported by the reporter)</p>
 
@@ -131,10 +137,12 @@ In case you generates an object with all of your data, much simpler to burst it 
 
   JUnit Reporter configuration {reportsdir: "the output report location", testsdir: "the test folder to be scanned"}
 
+
 <p>Write your data to a file</p>
 * write(file, data)
     + file {String} The file
     + data {String} The file content
+
 
 <p>Set the reporter type</p>
 * setReporter(key)
