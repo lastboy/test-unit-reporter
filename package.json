@@ -1,23 +1,23 @@
 {
-  "name": "junit-model-reporter",
-  "description": "Create JavaScript JUnit Object Model with Reporter",
+  "name": "test-model-reporter",
+  "description": "Create a pure JavaScript object model based on JUnit methodology",
   "version": "0.0.1",
   "author": "Arik Lewin (https://github.com/lastboy)",
   "homepage": "https://github.com/lastboy",
   "repository": {
     "type": "git",
-    "url": "git://github.com/lastboy/junit-model-reporter.git"
+    "url": "git://github.com/lastboy/test-model-reporter.git"
   },
   "bugs": {
-    "url": "http://github.com/lastboy/junit-model-reporter/issues"
+    "url": "http://github.com/lastboy/test-model-reporter/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/lastboy/junit-model-reporter/LICENSE-MIT"
+      "url": "http://github.com/lastboy/test-model-reporter/LICENSE-MIT"
     }
   ],
-  "main": "junitmr.js",
+  "main": "tmr.js",
   "scripts": {
     "test": "node test.js"
   },
@@ -46,6 +46,6 @@
   "contributors": [
     "Arik Lewin (https://github.com/lastboy)"
   ],
-  "_from": "junit-model-reporter@~0.0.1",
+  "_from": "test-model-reporter@~0.0.1",
   "license": "MIT"
 }

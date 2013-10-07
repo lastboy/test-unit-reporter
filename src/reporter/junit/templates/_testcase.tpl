@@ -1,1 +1,1 @@
-<testcase name="{{data.name}}" assertions="{{data.assertions}}" classname="{{data.classname}}" status="{{data.status}}" time="{{data.time}}">{{data.body}}</testcase>
+<testcase {{data.get('name')}} {{data.get('assertions')}} {{data.get('classname')}} {{data.get('status')}} {{data.get('time')}}>{{data.get('body',0)}}</testcase>

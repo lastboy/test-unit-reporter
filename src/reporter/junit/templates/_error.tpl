@@ -1,1 +1,1 @@
-<error message="{{data.message}}" type="{{data.type}}" >{{data.body}}</error>
+<error {{data.get('message')}} {{data.get('type')}} >{{data.get('body',0)}}</error>

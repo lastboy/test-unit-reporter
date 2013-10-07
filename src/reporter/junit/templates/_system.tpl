@@ -1,1 +1,1 @@
-<system-{{data.systemtype}} >{{data.body}}</system-{{data.systemtype}}>
+<system-{{data.systemtype}} >{{data.get('body',0)}}</system-{{data.systemtype}}>

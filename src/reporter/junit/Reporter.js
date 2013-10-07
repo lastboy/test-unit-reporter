@@ -61,7 +61,7 @@ module.exports = function () {
 
 
             if (_fs.existsSync(reportsdir)) {
-                _fs.rmrf(_path.resolve(reportsdir));
+                _fs.rmrfSync(_path.resolve(reportsdir));
             }
 
             if (!_fs.existsSync(reportsdir)) {
@@ -78,7 +78,7 @@ module.exports = function () {
                 name: this.get("antxml"),
                 data: {
                     reportsdir: _path.resolve(reportsdir),
-                    testsdir: _path.resolve(reportsdir)
+                    testsdir: _path.resolve(testsdir)
                 }
             });
 

@@ -9,7 +9,7 @@ var _xml2js = require("xml2js"),
 
 // ant temp file creation hack
 _baseAnt = _path.join(global.jmrbase, "node_modules", "ant", "ant", "bin");
-_ant.TMP_PATH = "./tests";
+_ant.TMP_PATH = global.jmrbase;
 _ant.ANT_PATH = _baseAnt + "/ant";
 
 module.exports = function() {

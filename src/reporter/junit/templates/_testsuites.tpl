@@ -1,1 +1,1 @@
-<testsuites disabled="{{data.disabled}}" errors="{{data.errors}}" failures="{{data.failures}}" name="{{data.name}}" tests="{{data.tests}}" time="{{data.time}}" >{{data.body}}</testsuites>
+<testsuites {{data.get('name')}} {{data.get('disabled')}} {{data.get('errors')}} {{data.get('failures')}}  {{data.get('tests')}}  {{data.get('time')}}  >{{data.get('body',0)}} </testsuites>

@@ -64,7 +64,9 @@ module.exports = function () {
         var out = [], item, type = config.clazz.type,
             impl = config.impl,
             obj = _getclassObject(type),
-            clazz, tpl, collection;
+            clazz, tpl, collection,
+            testbody,
+            key, mustacheFunc;
 
         if (obj) {
             clazz = obj.get("clazz");
@@ -94,7 +96,35 @@ module.exports = function () {
 
                 }
 
-                config.data["body"] = out.join("");
+                testbody = impl.data.body;
+                if (testbody && _typedas.isString(testbody)) {
+                    config.data["body"] = testbody
+
+                } else {
+                    config.data["body"] = out.join("");
+                }
+
+                config.data.get = function (name, format) {
+                    var value;
+                    if (name) {
+                        value = config.data[name];
+                        format = (format !== undefined ? format : 1);
+
+                        if (value !== undefined && value !== null) {
+                            value = (value.trim ? value.trim() : value);
+                            if (value.trim && value === "") {
+                                return undefined;
+                            }
+                            if (format) {
+                                return [name, "=\"", value, "\""].join("");
+                            } else {
+                                return value;
+                            }
+                        }
+                    }
+                    return undefined;
+                };
+
                 return _tplutils.template({
                     name: ["_", tpl].join(""),
                     path: global.jmr.reporter.getTemplateURL(),
@@ -220,7 +250,7 @@ module.exports = function () {
             };
 
             this.children = function() {
-                return ( (this.body && this.body.length > 0) ? this.body : null);
+                return ( (this.body && _typedas.isArray(this.body) && this.body.length > 0) ? this.body : null);
             }
 
             /**
@@ -255,13 +285,17 @@ module.exports = function () {
             };
 
             if (bodyconfig) {
-                bodyconfig.forEach(function (body) {
-                    var model;
-                    if (body) {
-                        model = _me.create(body);
-                        me.add(model);
-                    }
-                });
+                if (bodyconfig.forEach) {
+                    bodyconfig.forEach(function (body) {
+                        var model;
+                        if (body) {
+                            model = _me.create(body);
+                            me.add(model);
+                        }
+                    });
+                } else {
+                   me.data.body = bodyconfig;
+                }
             }
 
         }

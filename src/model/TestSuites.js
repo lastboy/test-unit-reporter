@@ -9,6 +9,7 @@ _base.add(
             errors: undefined,
             failures: undefined,
             tests: undefined,
+            name: undefined,
             time: undefined
         },
         type: _enum.TESTSUITES,

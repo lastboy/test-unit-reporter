@@ -1,1 +1,1 @@
-<skipped>{{data.body}}</skipped>
+<skipped>{{data.get('body',0)}}</skipped>

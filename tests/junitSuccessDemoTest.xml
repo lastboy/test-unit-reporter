@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="successful test" tests="2" time="27.964130383" failures="0" errors="0" skipped="0">
-    <testcase name="performs action and it works" time="9.378132234">
-    </testcase>
-    <testcase name="performs another action and it works too" time="18.540659008">
-    </testcase>
-    <system-out>all good</system-out>
-    <system-err>DEPRECATED: using old version of API</system-err>
-</testsuite>
