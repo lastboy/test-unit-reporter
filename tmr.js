@@ -164,8 +164,6 @@ module.exports = function () {
             } else {
                 _log.warn("[TestUnitReporter] file: ", file, " already exists")
             }
-
-
         },
 
         /**

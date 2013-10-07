@@ -95,9 +95,13 @@ function apiTest() {
     tmr.report({
         reportsdir:"tests/reports",
         testsdir: "tests"
-    });}
+    });
+}
 
 (function() {
+
+    if (!fs.exists)
+    fs.mkdirSync("./tests");
 
     console.log("\n\n** API Test ************");
     apiTest();
