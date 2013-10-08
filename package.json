@@ -6,15 +6,15 @@
   "homepage": "https://github.com/lastboy",
   "repository": {
     "type": "git",
-    "url": "git://github.com/lastboy/test-model-reporter.git"
+    "url": "git://github.com/lastboy/test-unit-reporter.git"
   },
   "bugs": {
-    "url": "http://github.com/lastboy/test-model-reporter/issues"
+    "url": "http://github.com/lastboy/test-unit-reporter/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/lastboy/test-model-reporter/LICENSE-MIT"
+      "url": "http://github.com/lastboy/test-unit-reporter/LICENSE-MIT"
     }
   ],
   "main": "tmr.js",
