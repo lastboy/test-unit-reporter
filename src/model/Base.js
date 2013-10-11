@@ -1,23 +1,23 @@
-var _jsutils = require("js.utils"),
-    _utils = requirext("jmr.utils"),
-    _log = _utils.logger(),
-    _typedas = require("typedas"),
-    _tplutils = require("js.utils").Template,
-    _,
-    _mapper;
-
-module.exports = function () {
+var _jmrModuleObject = function () {
 
     /*
      Map for indexing each test class with its _Model
      */
     var _map = {
 
-    }, _me;
+    }, _me,
+        _vars = {};
 
     function _loadmapper() {
-        if (!_mapper) {
-            _mapper = require("./Mapper.js");
+        if (!_vars.mapper) {
+            if (typeof exports !== 'undefined') {
+                if (typeof module !== 'undefined' && module.exports) {
+                    _vars.mapper = require("./Mapper.js");
+                }
+            } else {
+                _vars.mapper = require("jmr.mapper");
+            }
+
         }
     }
 
@@ -25,7 +25,7 @@ module.exports = function () {
         _loadmapper();
 
         // call the test class function (should export the Base.get)
-        return ((_mapper && _mapper[type]) ? _mapper[type].get(type) : undefined);
+        return ((_vars.mapper && _vars.mapper[type]) ? _vars.mapper[type].get(type) : undefined);
     }
 
     function _invoke(method, config) {
@@ -36,8 +36,8 @@ module.exports = function () {
         _loadmapper();
 
         // call the test class method with config arg
-        obj = _mapper[type];
-        if (_mapper && obj) {
+        obj = _vars.mapper[type];
+        if (_vars.mapper && obj) {
             if (obj[method]) {
                 return obj[method](config);
             }
@@ -74,7 +74,7 @@ module.exports = function () {
         }
         if (config.data) {
 
-            if (_typedas.isObject(config.data)) {
+            if (_vars.typedas.isObject(config.data)) {
                 item = impl.children();
 
                 // In case of children
@@ -89,7 +89,7 @@ module.exports = function () {
                         collection = config.impl.collect.call(config.impl);
                         if (collection) {
                             impl.setall(collection);
-                            _jsutils.Object.copy(collection, config.data);
+                            _vars.jsutilsobj.copy(collection, config.data);
                         }
                     }
 
@@ -97,7 +97,7 @@ module.exports = function () {
                 }
 
                 testbody = impl.data.body;
-                if (testbody && _typedas.isString(testbody)) {
+                if (testbody && _vars.typedas.isString(testbody)) {
                     config.data["body"] = testbody
 
                 } else {
@@ -125,7 +125,7 @@ module.exports = function () {
                     return undefined;
                 };
 
-                return _tplutils.template({
+                return _vars.tplutils.template({
                     name: ["_", tpl].join(""),
                     path: global.jmr.reporter.getTemplateURL(),
                     data: {
@@ -138,9 +138,14 @@ module.exports = function () {
 
     _me = {
 
+        internal: function(refs) {
+            _vars = refs;
+
+        },
+
         create: function (config) {
 
-            if (!_utils.validargs(config)) {
+            if (!_vars.utils.validargs(config)) {
                 return undefined;
             }
 
@@ -157,7 +162,7 @@ module.exports = function () {
          */
         generate: function (config) {
 
-            if (!_utils.validargs(config)) {
+            if (!_vars.utils.validargs(config)) {
                 return undefined;
             }
 
@@ -181,19 +186,19 @@ module.exports = function () {
          */
         add: function (config) {
 
-            if (!_utils.validargs(config)) {
+            if (!_vars.utils.validargs(config)) {
                 return undefined;
             }
 
             var type = config.type,
                 clazz = config.clazz;
 
-            if (type && clazz && _typedas.isFunction(clazz)) {
+            if (type && clazz && _vars.typedas.isFunction(clazz)) {
 
                 _map[type] = new _Model(config);
 
             } else {
-                _log.warn("Failed to add map of type: ", type);
+                _vars.log.warn("Failed to add map of type: ", type);
             }
 
         },
@@ -230,7 +235,7 @@ module.exports = function () {
             this.setall = function(item) {
 
                 var key, value;
-                if (item && _typedas.isObject(item)) {
+                if (item && _vars.typedas.isObject(item)) {
 
                     for (key in item) {
                         if (item.hasOwnProperty(key)) {
@@ -240,7 +245,7 @@ module.exports = function () {
                     }
 
                 } else {
-                    _log.warn("[test.unit base.setall] No valid arguments, expected of type Object ");
+                    _vars.log.warn("[test.unit base.setall] No valid arguments, expected of type Object ");
                 }
             }
 
@@ -250,7 +255,7 @@ module.exports = function () {
             };
 
             this.children = function() {
-                return ( (this.body && _typedas.isArray(this.body) && this.body.length > 0) ? this.body : null);
+                return ( (this.body && _vars.typedas.isArray(this.body) && this.body.length > 0) ? this.body : null);
             }
 
             /**
@@ -269,7 +274,7 @@ module.exports = function () {
              */
             this.remove = function () {
                 // TODO TBD
-                _log.warn("Not implemented (in the TODO list)");
+                _vars.log.warn("Not implemented (in the TODO list)");
             }
 
             this.compile = function () {
@@ -304,3 +309,36 @@ module.exports = function () {
     return _me;
 
 }();
+
+
+if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+        // nodejs support
+        _jmrModuleObject.internal({
+            typedas: require("typedas"),
+            jsutilsobj: require("js.utils").Object,
+            utils: requirext("jmr.utils"),
+            log: requirext("jmr.utils").logger(),
+            tplutils: require("js.utils").Template
+        });
+        module.exports = _jmrModuleObject;
+
+    }
+} else {
+    define(["typedas", "jsutils", "jmr.utils"], function(
+        typedasref,
+        jsutils,
+        utils
+      ) {
+
+
+        _jmrModuleObject.internal({
+            typedas: typedAs,
+            jsutilsobj: jsutilsObject,
+            utils: utils,
+            log:  utils.logger(),
+            tplutils: jsutilsTemplate
+        });
+        return _jmrModuleObject;
+    });
+}

@@ -1,9 +1,6 @@
-var _base = require("./Base.js"),
-    _enum = require("./Enum.js"),
-    _typedas = require("typedas");
 
-_base.add(
-    {
+
+var _jmrtcspec =  {
         spec: {
             name: undefined,
             assertions: undefined,
@@ -11,24 +8,22 @@ _base.add(
             status: undefined,
             time: undefined
         },
-        type: _enum.TESTCASE,
         tpl: "testcase",
         clazz: function(config) {
 
         }
-    });
+    },
 
-module.exports = function () {
-
-    var _class;
+    _jmrModuleTestCase,
+    _jmrModuleTestCaseClass = function (vars) {
 
     function _TestClass(config) {
-        _base.initTestClass.call(this, config);
+        vars.base.initTestClass.call(this, config);
     }
 
     return {
 
-        get: _base.get,
+        get: vars.base.get,
 
         create: function (config) {
 
@@ -36,4 +31,38 @@ module.exports = function () {
         }
     };
 
-}();
+};
+
+if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+        // nodejs support
+
+        var _enum = require("./Enum.js"),
+            _base = require("./Base.js");
+
+        _jmrModuleTestCase = new _jmrModuleTestCaseClass({base: _base});
+
+        _jmrtcspec.type = _enum.TESTCASE;
+        _base.add(_jmrtcspec);
+
+        module.exports = _jmrModuleTestCase;
+
+    }
+} else {
+    define(["typedas", "jsutils", "jmr.utils", "jmr.enum", "jmr.base"], function(
+        typedasref,
+        jsutils,
+        utils,
+        _enum,
+        _base
+        ) {
+
+        _jmrtcspec.type = _enum.TESTCASE;
+        _base.add(_jmrtcspec);
+
+        _jmrModuleTestCase = new _jmrModuleTestCaseClass({base: _base});
+
+
+        return new _jmrModuleTestCase;
+    });
+}

@@ -1,17 +1,16 @@
-var _utils = requirext("jmr.utils"),
-    _basem = require("./Base.js");
 
-module.exports = function() {
+var _jmrModelUtilsModule,
+    _jmrModelUtilsModuleClass = function(vars) {
 
     function _base(method, config) {
 
-        if (!_utils.validargs(config)) {
+        if (!vars.utils.validargs(config)) {
             return undefined;
         }
 
         var type = config.type,
             moduleConfig = config.data,
-            module = _basem[method],
+            module = vars.basem[method],
             output;
 
         if (module) {
@@ -45,4 +44,22 @@ module.exports = function() {
             return _base("generate", config);
         }
     };
-}();
+};
+
+
+if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+        // nodejs support
+
+        _jmrModelUtilsModule = new _jmrModelUtilsModuleClass({utils: requirext("jmr.utils"), basem: require("./Base")});
+        module.exports = _jmrModelUtilsModule;
+    }
+} else {
+    define(["jmr.utils", "jmr.base"], function (jmrutils, basem) {
+
+        _jmrModelUtilsModule = new _jmrModelUtilsModuleClass({utils:jmrutils , basem:basem});
+
+        return _jmrModelUtilsModule;
+
+    });
+}

@@ -1,38 +1,44 @@
 console.log("JUnit Model Reporter Test....");
-var tmr = require('./tmr.js'),
-    fs = require("fs");
+var tmr,
+    fs;
 
 // TODO check what tests should count...
-function generateTest() {
+function generateTest(tmr) {
 
     var obj = tmr.generate({
         type: "model.testsuites",
         data: {
             disabled: "false",
             name: "test.suites.1",
-            body: [{
-                type: "model.testsuite",
-                data: {
-                    id: "$2",
-                    package: "test.test",
-                    name: "test.suite.1",
-                    body: [{
-                        type: "model.testcase",
-                        data: {
-                            classname: "class1",
-                            name: "test.case",
-                            time: "now",
-                            body: [{
-                                type: "model.failure",
+            body: [
+                {
+                    type: "model.testsuite",
+                    data: {
+                        id: "$2",
+                        package: "test.test",
+                        name: "test.suite.1",
+                        body: [
+                            {
+                                type: "model.testcase",
                                 data: {
-                                    type: "fail",
-                                    body: "erwerwe"
+                                    classname: "class1",
+                                    name: "test.case",
+                                    time: "now",
+                                    body: [
+                                        {
+                                            type: "model.failure",
+                                            data: {
+                                                type: "fail",
+                                                body: "erwerwe"
+                                            }
+                                        }
+                                    ]
                                 }
-                            }]
-                        }
-                    }]
+                            }
+                        ]
+                    }
                 }
-            }]
+            ]
         }
     });
 
@@ -93,22 +99,41 @@ function apiTest() {
     console.log("\nValidating report, the report is: " + (tmr.validate(out) ? "valid" : "not valid"));
 
     tmr.report({
-        reportsdir:"tests/reports",
+        reportsdir: "tests/reports",
         testsdir: "tests"
     });
 }
 
-(function() {
+(function () {
 
-    var testfolder = "./tests";
-    if (!fs.existsSync(testfolder)) {
-        fs.mkdirSync(testfolder);
+
+    if (typeof exports !== 'undefined') {
+        if (typeof module !== 'undefined' && module.exports) {
+            // nodejs support
+
+            var testfolder = "./tests";
+
+            tmr = require('./tmr.js');
+            fs = require("fs");
+
+            if (!fs.existsSync(testfolder)) {
+                fs.mkdirSync(testfolder);
+            }
+
+            console.log("\n\n** API Test ************");
+            apiTest();
+
+            console.log("\n\n** Generate by configuration Test ************");
+            generateTest(tmr);
+
+        }
+    } else {
+        require(["jmr"], function (jmr) {
+            console.log("\n\n** Generate by configuration Test ************");
+            generateTest(jmr);
+
+        });
     }
 
-    console.log("\n\n** API Test ************");
-    apiTest();
-
-    console.log("\n\n** Generate by configuration Test ************");
-    generateTest()
 
 })();

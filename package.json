@@ -38,7 +38,8 @@
     "js.utils": "~0.0.1",
     "libxmljs": "~0.8.1",
     "fs.extra": "~1.2.1",
-    "xml2js": "~0.2.8"
+    "xml2js": "~0.2.8",
+    "requirejs": "~2.1.8"
   },
   "devDependencies": {
     "ant": "~0.2.0"

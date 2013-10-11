@@ -1,6 +1,5 @@
-var _typedas = require("typedas");
 
-module.exports = function () {
+var _jmrModuleUtils = function () {
 
     return {
 
@@ -11,7 +10,7 @@ module.exports = function () {
         validargs: function (config) {
 
             if (!config) {
-                this.logger().warn("[jmr.utils.validargs] The passed argument(s) is/are not valid");
+                _jmrModuleUtils.logger().warn("[jmr.utils.validargs] The passed argument(s) is/are not valid");
                 return false;
             }
 
@@ -20,3 +19,16 @@ module.exports = function () {
     };
 
 }();
+
+if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+        // nodejs support
+        module.exports = _jmrModuleUtils;
+
+    }
+} else {
+    define([], function() {
+
+        return _jmrModuleUtils;
+    });
+}
