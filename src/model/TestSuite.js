@@ -1,10 +1,4 @@
-var _base = require("./Base.js"),
-    _enum = require("./Enum.js"),
-    _typedas = require("typedas"),
-    _jsutils = require("js.utils");
-
-_base.add(
-    {
+var _jmrtsspec =  {
         spec: {
             disabled: undefined,
             errors: undefined,
@@ -20,91 +14,124 @@ _base.add(
             time: undefined,
             timestamp: undefined
         },
-        type: _enum.TESTSUITE,
         tpl: "testsuite",
         clazz: function (config) {
 
         }
-    });
+    },
 
-module.exports = function () {
+    _jmrModuleTestSuite,
+    _jmrModuleTestSuiteClass = function (vars) {
 
-    var _class;
+        function _TestClass(config) {
+            vars.base.initTestClass.call(this, config);
+        }
 
-    function _TestClass(config) {
-        _base.initTestClass.call(this, config);
-    }
 
-    /**
-     * Collection for dynamic data such as: errors, failures and tests attributes.
-     *
-     * @returns {{}}
-     */
-    _TestClass.prototype.getCollection = function () {
-        var obj = {};
+        /**
+         * Collection for dynamic data such as: errors, failures and tests attributes.
+         *
+         * @returns {{}}
+         */
+        _TestClass.prototype.getCollection = function () {
+            var obj = {};
 
-        _jsutils.Object.copy({
-            tests: 0,
-            failures: 0,
-            errors: 0
-        }, obj);
+            vars.jsutils.Object.copy({
+                tests: 0,
+                failures: 0,
+                errors: 0
+            }, obj);
 
-        return obj;
-    };
+            return obj;
+        };
 
-    /**
-     * Reset the any objects members
-     */
-    _TestClass.prototype.reset = function () {
-        this.collection = this.getCollection();
-    };
+        /**
+         * Reset the any objects members
+         */
+        _TestClass.prototype.reset = function () {
+            this.collection = this.getCollection();
+        };
 
-    _TestClass.prototype.collect = function () {
-        var children = this.children(),
-            me = this;
+        _TestClass.prototype.collect = function () {
+            var children = this.children(),
+                me = this;
 
-        this.reset();
+            this.reset();
 
-        if (children) {
+            if (children) {
 
-            children.forEach(function (child) {
-                var childrenLcl;
-                if (child) {
-                    if (child.getType() === _enum.TESTCASE) {
+                children.forEach(function (child) {
+                    var childrenLcl;
+                    if (child) {
+                        if (child.getType() === vars.enumm.TESTCASE) {
 
-                        me.collection.tests++;
+                            me.collection.tests++;
 
-                        childrenLcl = child.children();
-                        if (childrenLcl) {
+                            childrenLcl = child.children();
+                            if (childrenLcl) {
 
-                            childrenLcl.forEach(function (childlcl) {
-                                if (childlcl) {
-                                    if (childlcl.getType() === _enum.FAILURE) {
-                                        me.collection.failures++;
+                                childrenLcl.forEach(function (childlcl) {
+                                    if (childlcl) {
+                                        if (childlcl.getType() === vars.enumm.FAILURE) {
+                                            me.collection.failures++;
 
-                                    } else if (childlcl.getType() === _enum.ERROR) {
-                                        me.collection.errors++;
+                                        } else if (childlcl.getType() === vars.enumm.ERROR) {
+                                            me.collection.errors++;
+                                        }
                                     }
-                                }
-                            });
+                                });
+                            }
                         }
                     }
-                }
-            });
-        }
+                });
+            }
 
-        return this.collection;
+            return this.collection;
+        };
+
+
+        return {
+
+            get: vars.base.get,
+
+            create: function (config) {
+
+                return new _TestClass(config);
+            }
+        };
+
     };
 
-    return {
+if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+        // nodejs support
 
-        get: _base.get,
+        var _enum = require("./Enum.js"),
+            _base = require("./Base.js"),
+            _jsutils = require("js.utils"),
 
-        create: function (config) {
+            _jmrModuleTestSuite = new _jmrModuleTestSuiteClass({base: _base, jsutils: _jsutils, enumm: _enum});
 
-            _class = new _TestClass(config);
-            return _class;
-        }
-    };
+        _jmrtsspec.type = _enum.TESTSUITE;
+        _base.add(_jmrtsspec);
 
-}();
+        module.exports = _jmrModuleTestSuite;
+
+    }
+} else {
+    define(["typedas", "jsutils", "jmr.utils", "jmr.enum", "jmr.base"], function(
+        typedasref,
+        jsutils,
+        utils,
+        _enum,
+        _base
+        ) {
+
+        _jmrtsspec.type = _enum.TESTSUITE;
+        _base.add(_jmrtsspec);
+
+        _jmrModuleTestSuite = new _jmrModuleTestSuiteClass({base: _base, jsutils:jsutils, enumm: _enum});
+
+        return _jmrModuleTestSuite;
+    });
+}

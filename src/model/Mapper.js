@@ -61,7 +61,7 @@ if (typeof exports !== 'undefined') {
     }
 } else {
     define([
-        "./Enum.js",
+        "jmr.enum",
         "jmr.model.tcase",
         "jmr.model.tsuites",
         "jmr.model.tsuite",

@@ -62,7 +62,6 @@ if (typeof exports !== 'undefined') {
 
         _jmrModuleTestCase = new _jmrModuleTestCaseClass({base: _base});
 
-
-        return new _jmrModuleTestCase;
+        return _jmrModuleTestCase;
     });
 }

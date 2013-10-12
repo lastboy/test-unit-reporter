@@ -1,9 +1,4 @@
-var _base = require("./Base.js"),
-    _jsutils = require("js.utils"),
-    _enum = require("./Enum.js");
-
-_base.add(
-    {
+var _jmrtssspec =  {
         spec: {
             disabled: undefined,
             errors: undefined,
@@ -12,78 +7,110 @@ _base.add(
             name: undefined,
             time: undefined
         },
-        type: _enum.TESTSUITES,
         tpl: "testsuites",
         clazz: function (config) {
 
         }
-    });
+    },
 
-module.exports = function () {
+    _jmrModuleTestSuites,
+    _jmrModuleTestSuitesClass = function (vars) {
 
-    var _class;
+        function _TestClass(config) {
+            vars.base.initTestClass.call(this, config);
+        }
 
-    function _TestClass(config) {
-        _base.initTestClass.call(this, config);
-    }
+        /**
+         * Collection for dynamic data such as: errors, failures and tests attributes.
+         *
+         * @returns {{}}
+         */
+        _TestClass.prototype.getCollection = function () {
+            var obj = {};
 
-    /**
-     * Collection for dynamic data such as: errors, failures and tests attributes.
-     *
-     * @returns {{}}
-     */
-    _TestClass.prototype.getCollection = function () {
-        var obj = {};
+            vars.jsutils.Object.copy({
+                tests: 0,
+                failures: 0,
+                errors: 0
+            }, obj);
 
-        _jsutils.Object.copy({
-            tests: 0,
-            failures: 0,
-            errors: 0
-        }, obj);
+            return obj;
+        };
 
-        return obj;
-    };
+        /**
+         * Reset the any objects members
+         */
+        _TestClass.prototype.reset = function () {
+            this.collection = this.getCollection();
+        };
 
-    /**
-     * Reset the any objects members
-     */
-    _TestClass.prototype.reset = function () {
-        this.collection = this.getCollection();
-    };
+        _TestClass.prototype.collect = function () {
+            var children = this.children(),
+                me = this;
 
-    _TestClass.prototype.collect = function () {
-        var children = this.children(),
-            me = this;
+            this.reset();
 
-        this.reset();
+            if (children) {
 
-        if (children) {
+                children.forEach(function (child) {
+                    if (child) {
+                        if (child.getType() === vars.enumm.TESTSUITE) {
 
-            children.forEach(function (child) {
-                if (child) {
-                    if (child.getType() === _enum.TESTSUITE) {
+                            me.collection.errors += (child.get("errors") || 0);
+                            me.collection.failures += (child.get("failures") || 0);
+                            me.collection.tests += (child.get("tests") || 0);
 
-                        me.collection.errors += (child.get("errors") || 0);
-                        me.collection.failures += (child.get("failures") || 0);
-                        me.collection.tests += (child.get("tests") || 0);
-
+                        }
                     }
-                }
-            });
-        }
+                });
+            }
 
-        return this.collection;
+            return this.collection;
+        };
+
+        return {
+
+            get: vars.base.get,
+
+            create: function (config) {
+
+                return new _TestClass(config);
+            }
+        };
+
     };
 
-    return {
+if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+        // nodejs support
 
-        get: _base.get,
+        var _enum = require("./Enum.js"),
+            _base = require("./Base.js"),
+            _jsutils = require("js.utils"),
 
-        create: function (config) {
+        _jmrModuleTestSuites = new _jmrModuleTestSuitesClass({base: _base, jsutils: _jsutils, enumm: _enum});
 
-            _class = new _TestClass(config);
-            return _class;
-        }
-    };
+        _jmrtssspec.type = _enum.TESTSUITES;
+        _base.add(_jmrtssspec);
 
-}();
+        module.exports = _jmrModuleTestSuites;
+
+    }
+} else {
+    define(["typedas", "jsutils", "jmr.utils", "jmr.enum", "jmr.base"], function(
+        typedasref,
+        jsutils,
+        utils,
+        _enum,
+        _base
+        ) {
+
+        _jmrtssspec.type = _enum.TESTSUITES;
+        _base.add(_jmrtssspec);
+
+        _jmrModuleTestSuites = new _jmrModuleTestSuitesClass({base: _base, jsutils:jsutils, enumm: _enum});
+
+
+        return _jmrModuleTestSuites;
+    });
+}

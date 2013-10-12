@@ -39,7 +39,9 @@ require.config({
 
 });
 
-require(["jmr"], function(jmr) {
+require(["jmr", "jmr.base"], function(jmr, base) {
 
-    jmrOnReady.call(this, jmr);
+    base.loadMapper(function() {
+        jmrOnReady.call(this, jmr);
+    });
 });

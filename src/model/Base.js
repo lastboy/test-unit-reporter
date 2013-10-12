@@ -8,14 +8,23 @@ var _jmrModuleObject = function () {
     }, _me,
         _vars = {};
 
-    function _loadmapper() {
+    function _loadmapper(callback) {
         if (!_vars.mapper) {
             if (typeof exports !== 'undefined') {
                 if (typeof module !== 'undefined' && module.exports) {
                     _vars.mapper = require("./Mapper.js");
                 }
             } else {
-                _vars.mapper = require("jmr.mapper");
+                if (!_vars.mapperwait) {
+                    _vars.mapperwait = 1;
+                    require(["jmr.mapper"], function(mapper) {
+                        _vars.mapper = mapper;
+                        _vars.mapperwait = 0;
+                        if (callback) {
+                            callback.call(this, mapper)
+                        }
+                    });
+                }
             }
 
         }
@@ -140,6 +149,15 @@ var _jmrModuleObject = function () {
 
         internal: function(refs) {
             _vars = refs;
+        },
+
+        loadMapper: function(callback) {
+
+            _loadmapper(function(mapper) {
+                if (callback) {
+                    callback.call(this, mapper);
+                }
+            });
 
         },
 
@@ -331,7 +349,6 @@ if (typeof exports !== 'undefined') {
         utils
       ) {
 
-
         _jmrModuleObject.internal({
             typedas: typedAs,
             jsutilsobj: jsutilsObject,
@@ -339,6 +356,7 @@ if (typeof exports !== 'undefined') {
             log:  utils.logger(),
             tplutils: jsutilsTemplate
         });
+
         return _jmrModuleObject;
     });
 }

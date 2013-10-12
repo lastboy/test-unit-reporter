@@ -128,11 +128,15 @@ function apiTest() {
 
         }
     } else {
-        require(["jmr"], function (jmr) {
-            console.log("\n\n** Generate by configuration Test ************");
-            generateTest(jmr);
+//        require(["jmr"], function (jmr) {
+//            console.log("\n\n** Generate by configuration Test ************");
 
-        });
+            jmrOnReady = function(jmr) {
+                debugger;
+                generateTest(jmr);
+            };
+
+//        });
     }
 
 
