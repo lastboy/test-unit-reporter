@@ -29,7 +29,10 @@ require.config({
         "jmr.model.system": "./src/model/System",
         "jmr.model.utils": "./src/model/Utils",
 
-        "jmr.utils": "./src/utils/Utils"
+        "jmr.utils": "./src/utils/Utils",
+
+        // TODO developer mode : for the browser build first the templates bundle - node ./src/reporter/TemplateBuilder.js
+        "jmr.templates.bundle": "./src/reporter/tplbundle"
 
 
     },

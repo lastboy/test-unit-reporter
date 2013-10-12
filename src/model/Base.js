@@ -5,7 +5,7 @@ var _jmrModuleObject = function () {
      */
     var _map = {
 
-    }, _me,
+        }, _me,
         _vars = {};
 
     function _loadmapper(callback) {
@@ -17,7 +17,7 @@ var _jmrModuleObject = function () {
             } else {
                 if (!_vars.mapperwait) {
                     _vars.mapperwait = 1;
-                    require(["jmr.mapper"], function(mapper) {
+                    require(["jmr.mapper"], function (mapper) {
                         _vars.mapper = mapper;
                         _vars.mapperwait = 0;
                         if (callback) {
@@ -75,6 +75,7 @@ var _jmrModuleObject = function () {
             obj = _getclassObject(type),
             clazz, tpl, collection,
             testbody,
+            tplconfig,
             key, mustacheFunc;
 
         if (obj) {
@@ -134,26 +135,40 @@ var _jmrModuleObject = function () {
                     return undefined;
                 };
 
-                return _vars.tplutils.template({
-                    name: ["_", tpl].join(""),
-                    path: global.jmr.reporter.getTemplateURL(),
-                    data: {
-                        data: config.data
+                if (_vars.jmrconfig) {
+
+                    tplconfig = {
+                        // todo get a generic url for node and the browser like so: content: _vars.tplbundle[_vars.jmrconfig.getTemplateURL()],
+                        content: _vars.tplbundle["./src/reporter/" + "" + " "],
+                        data: {
+                            data: config.data
+                        }
                     }
-                });
+
+                } else {
+                    tplconfig = {
+                        name: ["_", tpl].join(""),
+                        path: global.jmr.reporter.getTemplateURL(),
+                        data: {
+                            data: config.data
+                        }
+                    }
+                }
+
+                return _vars.tplutils.template(tplconfig);
             }
         }
     }
 
     _me = {
 
-        internal: function(refs) {
+        internal: function (refs) {
             _vars = refs;
         },
 
-        loadMapper: function(callback) {
+        loadMapper: function (callback) {
 
-            _loadmapper(function(mapper) {
+            _loadmapper(function (mapper) {
                 if (callback) {
                     callback.call(this, mapper);
                 }
@@ -231,8 +246,8 @@ var _jmrModuleObject = function () {
 
             this.members = {};
             this.classobj = _getclassObject(config.type);
-            this.getType = function() {
-              return config.type;
+            this.getType = function () {
+                return config.type;
             };
             this.config = (this.classobj ? this.classobj.config : undefined);
 
@@ -250,7 +265,7 @@ var _jmrModuleObject = function () {
                 return this.members[key];
             };
 
-            this.setall = function(item) {
+            this.setall = function (item) {
 
                 var key, value;
                 if (item && _vars.typedas.isObject(item)) {
@@ -272,7 +287,7 @@ var _jmrModuleObject = function () {
                 this.data[key] = value;
             };
 
-            this.children = function() {
+            this.children = function () {
                 return ( (this.body && _vars.typedas.isArray(this.body) && this.body.length > 0) ? this.body : null);
             }
 
@@ -317,7 +332,7 @@ var _jmrModuleObject = function () {
                         }
                     });
                 } else {
-                   me.data.body = bodyconfig;
+                    me.data.body = bodyconfig;
                 }
             }
 
@@ -343,18 +358,16 @@ if (typeof exports !== 'undefined') {
 
     }
 } else {
-    define(["typedas", "jsutils", "jmr.utils"], function(
-        typedasref,
-        jsutils,
-        utils
-      ) {
+    define(["typedas", "jsutils", "jmr.utils", "jmr.config", "jmr.templates.bundle"], function (typedasref, jsutils, utils, jmrconfig, tplbundle) {
 
         _jmrModuleObject.internal({
             typedas: typedAs,
             jsutilsobj: jsutilsObject,
             utils: utils,
-            log:  utils.logger(),
-            tplutils: jsutilsTemplate
+            log: utils.logger(),
+            tplutils: jsutilsTemplate,
+            jmrconfig: jmrconfig,
+            tplbundle: tplbundle
         });
 
         return _jmrModuleObject;
