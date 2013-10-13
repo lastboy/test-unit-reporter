@@ -55,7 +55,7 @@ if (typeof exports !== 'undefined') {
         _jmrskippedpec.type = _enum.SKIPPED;
         _base.add(_jmrskippedpec);
 
-        _jmrModuleSkipped = new _jmrModuleSkippedClass({base: _base, jsutils:jsutils, enumm: _enum});
+        _jmrModuleSkipped = new _jmrModuleSkippedClass({base: _base, jsutils:{Object:jsutilsObject}, enumm: _enum});
 
 
         return _jmrModuleSkipped;

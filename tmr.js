@@ -134,7 +134,7 @@ if (typeof exports !== 'undefined') {
 
         _utils = requirext("jmr.utils");
         _log = _utils.logger();
-        global.jmr.reporter = require("./src/Config.js").getReporter("junit");
+        global.jmr.reporter = require("./src/Config.js").getReporter();
 
         _jmrModule = new _jmrModuleClass({
             fs: _fs,
@@ -145,7 +145,7 @@ if (typeof exports !== 'undefined') {
         });
 
         _jmrModule.setReporter = function (key) {
-            global.jmr.reporter = _getReporter("junit");
+            global.jmr.reporter = require("./src/Config.js").getReporter(key);
         };
 
         _jmrModule.report = function (config) {

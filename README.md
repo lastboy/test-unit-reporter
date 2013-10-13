@@ -1,4 +1,4 @@
-Test Unit Reporter
+Test Model Reporter
 =====================
 
 Create a pure JavaScript object mode based on JUnit methodology and produce a report based on that model.<br/>
@@ -97,6 +97,25 @@ In case you generates an object with all of your data, much simpler to burst it 
             }]
         }
     });
+
+
+## Versions
+
+### 0.0.2
+
+Support for the browser version, including:
+Direct download: [tmr-min.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-min.js)
+
+Assign a ready event:
+
+    jsutilsOnReady = function(obj, arr, tpl){
+    };
+
+Or you can use js.utils global variables (when the page done loading):
+
+* jsutilsObject;
+* jsutilsArray;
+* jsutilsTemplate;
 
 
 ## Reference

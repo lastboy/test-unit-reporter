@@ -76,7 +76,7 @@ var _jmrModuleObject = function () {
             clazz, tpl, collection,
             testbody,
             tplconfig,
-            key, mustacheFunc;
+            reportervar;
 
         if (obj) {
             clazz = obj.get("clazz");
@@ -137,9 +137,9 @@ var _jmrModuleObject = function () {
 
                 if (_vars.jmrconfig) {
 
+                    reportervar = _vars.jmrconfig.getReporter();
                     tplconfig = {
-                        // todo get a generic url for node and the browser like so: content: _vars.tplbundle[_vars.jmrconfig.getTemplateURL()],
-                        content: _vars.tplbundle["./src/reporter/" + "" + " "],
+                        content: _vars.tplbundle[[reportervar.getTemplateURL(), "/_", tpl, ".tpl"].join("")],
                         data: {
                             data: config.data
                         }

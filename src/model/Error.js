@@ -56,7 +56,7 @@ if (typeof exports !== 'undefined') {
         _jmrerrorpec.type = _enum.ERROR;
         _base.add(_jmrerrorpec);
 
-        _jmrModuleError = new _jmrModuleErrorClass({base: _base, jsutils:jsutils, enumm: _enum});
+        _jmrModuleError = new _jmrModuleErrorClass({base: _base, jsutils:{Object:jsutilsObject}, enumm: _enum});
 
         return _jmrModuleError;
     });

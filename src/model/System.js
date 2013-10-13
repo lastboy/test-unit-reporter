@@ -55,7 +55,7 @@ if (typeof exports !== 'undefined') {
         _jmrsystempec.type = _enum.SYSTEM;
         _base.add(_jmrsystempec);
 
-        _jmrModuleSystem = new _jmrModuleSystemClass({base: _base, jsutils:jsutils, enumm: _enum});
+        _jmrModuleSystem = new _jmrModuleSystemClass({base: _base, jsutils:{Object:jsutilsObject}, enumm: _enum});
 
 
         return _jmrModuleSystem;

@@ -56,7 +56,7 @@ if (typeof exports !== 'undefined') {
         _jmrfailurepec.type = _enum.FAILURE;
         _base.add(_jmrfailurepec);
 
-        _jmrModuleFailure = new _jmrModuleFailureClass({base: _base, jsutils:jsutils, enumm: _enum});
+        _jmrModuleFailure = new _jmrModuleFailureClass({base: _base, jsutils:{Object:jsutilsObject}, enumm: _enum});
 
 
         return _jmrModuleFailure;

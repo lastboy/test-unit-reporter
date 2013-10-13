@@ -108,7 +108,7 @@ if (typeof exports !== 'undefined') {
         _jmrtssspec.type = _enum.TESTSUITES;
         _base.add(_jmrtssspec);
 
-        _jmrModuleTestSuites = new _jmrModuleTestSuitesClass({base: _base, jsutils:jsutils, enumm: _enum});
+        _jmrModuleTestSuites = new _jmrModuleTestSuitesClass({base: _base, jsutils:{Object:jsutilsObject}, enumm: _enum});
 
 
         return _jmrModuleTestSuites;

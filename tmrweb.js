@@ -1,5 +1,4 @@
-
-var jmrOnReady = function(){
+var jmrOnReady = function () {
     console.log("Test Model Reporter is ready (jmrOnReady callback can be overriden [e.g. jmrOnReady=function(tmr){}]");
 };
 
@@ -8,18 +7,21 @@ var jmrOnReady = function(){
  */
 require.config({
 
-    baseUrl:".",
+    baseUrl: ".",
 
-    paths:{
+    paths: {
         "typedas": "node_modules/typedas/typedAs",
         "underscore": "node_modules/underscore/underscore-min",
         "jsutils": "node_modules/js.utils/jsutils-min",
 
         "jmr": "tmr",
-        "jmr.base":"./src/model/Base",
-        "jmr.mapper":"./src/model/Mapper",
+        "jmr.base": "./src/model/Base",
+        "jmr.mapper": "./src/model/Mapper",
         "jmr.enum": "./src/model/Enum",
+        "jmr.utils": "./src/utils/Utils",
         "jmr.config": "./src/Config",
+        "jmr.reporter.model": "./src/reporter/ReporterModel",
+
         "jmr.model.err": "./src/model/Error",
         "jmr.model.failure": "./src/model/Failure",
         "jmr.model.skipped": "./src/model/Skipped",
@@ -29,7 +31,8 @@ require.config({
         "jmr.model.system": "./src/model/System",
         "jmr.model.utils": "./src/model/Utils",
 
-        "jmr.utils": "./src/utils/Utils",
+        // junit
+        "jmr.reporter.junit": "./src/reporter/junit/Reporter",
 
         // TODO developer mode : for the browser build first the templates bundle - node ./src/reporter/TemplateBuilder.js
         "jmr.templates.bundle": "./src/reporter/tplbundle"
@@ -37,14 +40,30 @@ require.config({
 
     },
 
-    out:"tmr-min.js",
-    name:"tmrweb"
+    out: "tmr-min.js",
+    name: "tmrweb"
 
 });
 
-require(["jmr", "jmr.base"], function(jmr, base) {
+var jsutilsOnReady  = function (obj, arr, tpl) {
 
-    base.loadMapper(function() {
-        jmrOnReady.call(this, jmr);
+    require(["jmr", "jmr.base"], function (jmr, base) {
+
+        var jmrOnReadyListener,
+            jmrOnReadyDefaultListener = function() {
+                console.log("js.utils is ready (jmrOnReady callback can be overriden [e.g. jmrOnReady=function(obj, arr, tpl){}]");
+            };
+
+        base.loadMapper(function () {
+            if (typeof jmrOnReady !== "undefined") {
+                jmrOnReadyListener = jmrOnReady;
+            } else {
+                jmrOnReadyListener = jmrOnReadyDefaultListener;
+            }
+            jmrOnReadyListener.call(this, jmr);
+        });
     });
+};
+
+require(["jsutils"], function() {
 });

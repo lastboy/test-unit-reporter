@@ -47,17 +47,21 @@ function generateTest(tmr) {
     console.log("model: ", obj.model);
     console.log("out: ", obj.output);
 
-    if (fs.existsSync()) {
-        fs.unlinkSync(testfile);
+    if (typeof exports !== 'undefined') {
+        if (typeof module !== 'undefined' && module.exports) {
+
+            if (fs.existsSync()) {
+                fs.unlinkSync(testfile);
+            }
+            tmr.write(testfile, obj.output);
+
+            // validate the report agains the junit xsd
+            console.log("\nValidating report, the report is: " + (tmr.validate(obj.output) ? "valid" : "not valid"));
+        }
     }
-    tmr.write(testfile, obj.output);
-
-    // validate the report agains the junit xsd
-    console.log("\nValidating report, the report is: " + (tmr.validate(obj.output) ? "valid" : "not valid"));
-
 }
 
-function apiTest() {
+function apiTest(tmr) {
 
     var testsuite = tmr.create({
         type: "model.testsuite",
@@ -82,7 +86,6 @@ function apiTest() {
     });
 
     testcase.add(failure);
-
     testsuite.add(testcase);
 
     var testfile = "./tests/test2Test.xml",
@@ -90,18 +93,23 @@ function apiTest() {
     console.log("model: ", testsuite);
     console.log("out: ", out);
 
-    if (fs.existsSync()) {
-        fs.unlinkSync(testfile);
+    if (typeof exports !== 'undefined') {
+        if (typeof module !== 'undefined' && module.exports) {
+
+            if (fs.existsSync()) {
+                fs.unlinkSync(testfile);
+            }
+            tmr.write(testfile, out);
+
+            // validate the report agains the junit xsd
+            console.log("\nValidating report, the report is: " + (tmr.validate(out) ? "valid" : "not valid"));
+
+            tmr.report({
+                reportsdir: "tests/reports",
+                testsdir: "tests"
+            });
+        }
     }
-    tmr.write(testfile, out);
-
-    // validate the report agains the junit xsd
-    console.log("\nValidating report, the report is: " + (tmr.validate(out) ? "valid" : "not valid"));
-
-    tmr.report({
-        reportsdir: "tests/reports",
-        testsdir: "tests"
-    });
 }
 
 (function () {
@@ -121,22 +129,22 @@ function apiTest() {
             }
 
             console.log("\n\n** API Test ************");
-            apiTest();
+            apiTest(tmr);
 
             console.log("\n\n** Generate by configuration Test ************");
             generateTest(tmr);
 
         }
     } else {
-//        require(["jmr"], function (jmr) {
-//            console.log("\n\n** Generate by configuration Test ************");
 
-            jmrOnReady = function(jmr) {
-                debugger;
-                generateTest(jmr);
-            };
+        jmrOnReady = function (jmr) {
+            console.log("\n\n** API Test ************");
+            apiTest(jmr);
 
-//        });
+            console.log("\n\n** Generate by configuration Test ************");
+            generateTest(jmr);
+        };
+
     }
 
 
