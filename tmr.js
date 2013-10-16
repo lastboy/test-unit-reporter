@@ -104,17 +104,17 @@ if (typeof exports !== 'undefined') {
         (function () {
 
             var _requireIndex = {
-                "jmr.model.err": "./src/model/Error.js",
-                "jmr.model.failure": "./src/model/Failure.js",
-                "jmr.model.skipped": "./src/model/Skipped.js",
-                "jmr.model.tcase": "./src/model/TestCase.js",
-                "jmr.model.tsuite": "./src/model/TestSuite.js",
-                "jmr.model.tsuites": "./src/model/TestSuites.js",
-                "jmr.model.system": "./src/model/System.js",
-                "jmr.model.utils": "./src/model/Utils.js",
+                "jmrModelErrModule": "./src/model/Error.js",
+                "jmrModelFailureModule": "./src/model/Failure.js",
+                "jmrModelSkippedModule": "./src/model/Skipped.js",
+                "jmrModelTCaseModule": "./src/model/TestCase.js",
+                "jmrModelTSuiteModule": "./src/model/TestSuite.js",
+                "jmrModelTSuitesModule": "./src/model/TestSuites.js",
+                "jmrModelSystemModule": "./src/model/System.js",
+                "jmrModelUtilsModule": "./src/model/Utils.js",
 
-                "jmr.utils": "./src/utils/Utils.js",
-                "jmr.utils.ant": "./src/utils/AntUtils.js"
+                "jmrUtilsModule": "./src/utils/Utils.js",
+                "jmrUtilsAntModule": "./src/utils/AntUtils.js"
             };
 
             global.jmr = {};
@@ -132,7 +132,7 @@ if (typeof exports !== 'undefined') {
 
         })();
 
-        _utils = requirext("jmr.utils");
+        _utils = requirext("jmrUtilsModule");
         _log = _utils.logger();
         global.jmr.reporter = require("./src/Config.js").getReporter();
 
@@ -141,7 +141,7 @@ if (typeof exports !== 'undefined') {
             path: _path,
             utils: _utils,
             log: _log,
-            mutils: requirext("jmr.model.utils")
+            mutils: requirext("jmrModelUtilsModule")
         });
 
         _jmrModule.setReporter = function (key) {
@@ -188,7 +188,7 @@ if (typeof exports !== 'undefined') {
         module.exports = _jmrModule;
     }
 } else {
-    define(["jmr.config", "jmr.utils", "jmr.model.utils"], function (jmrconfig, jmrutils, jmrmutils) {
+    define(["jmrConfigModule", "jmrUtilsModule", "jmrModelUtilsModule"], function (jmrconfig, jmrutils, jmrmutils) {
 
         _jmrModule = new _jmrModuleClass({
             utils: jmrutils,

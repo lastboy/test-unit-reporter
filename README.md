@@ -40,6 +40,9 @@ The model can be crated using an API like so:
             }
         });
 
+        testcase.add(failure);
+        testsuite.add(testcase);
+
 
 ### With that :
 You can validate your model against the XSD file:
@@ -47,7 +50,7 @@ You can validate your model against the XSD file:
     // compile the model to an output
     var output = testsuite.compile();
     // validate the output against the XSD file
-    jmr.validate(out)
+    jmr.validate(output)
 
 
 ### And then
@@ -101,21 +104,25 @@ In case you generates an object with all of your data, much simpler to burst it 
 
 ## Versions
 
+### 0.0.3
+Support for a none AMD browser version.
+
+* download browser version with NO dependency, download: [tmr-min.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-min.js)
+    + Just use 'jmr' as global variable
+
+* download browser version with require dependency, download: [tmr-require-min.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-require-min.js)
+    + Still need to use 'jmrOnReady' Listener as described below
+
+
 ### 0.0.2
 
-Support for the browser version, including:
-Direct download: [tmr-min.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-min.js)
+Support for the browser version,
+Download: [tmr-require-min.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-require-min.js)
 
 Assign a ready event:
 
-    jsutilsOnReady = function(obj, arr, tpl){
+    jmrOnReady = function(tmr){
     };
-
-Or you can use js.utils global variables (when the page done loading):
-
-* jsutilsObject;
-* jsutilsArray;
-* jsutilsTemplate;
 
 
 ## Reference

@@ -51,11 +51,11 @@ if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
         // nodejs support
 
-        _jmrModelUtilsModule = new _jmrModelUtilsModuleClass({utils: requirext("jmr.utils"), basem: require("./Base")});
+        _jmrModelUtilsModule = new _jmrModelUtilsModuleClass({utils: requirext("jmrUtilsModule"), basem: require("./Base")});
         module.exports = _jmrModelUtilsModule;
     }
 } else {
-    define(["jmr.utils", "jmr.base"], function (jmrutils, basem) {
+    define(["jmrUtilsModule", "jmrBaseModule"], function (jmrutils, basem) {
 
         _jmrModelUtilsModule = new _jmrModelUtilsModuleClass({utils:jmrutils , basem:basem});
 

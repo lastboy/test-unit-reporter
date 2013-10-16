@@ -3,13 +3,13 @@
  *
  */
 //var _enum = require("./Enum.js"),
-//    _tcase = requirext("jmr.model.tcase"),
-//    _tsuites = requirext("jmr.model.tsuites"),
-//    _tsuite = requirext("jmr.model.tsuite"),
-//    _err = requirext("jmr.model.err"),
-//    _failure = requirext("jmr.model.failure"),
-//    _skipped = requirext("jmr.model.skipped"),
-//    _sys = requirext("jmr.model.system"),
+//    _tcase = requirext("jmrModelTCaseModule"),
+//    _tsuites = requirext("jmrModelTSuitesModule"),
+//    _tsuite = requirext("jmrModelTSuiteModule"),
+//    _err = requirext("jmrModelErrModule"),
+//    _failure = requirext("jmrModelFailureModule"),
+//    _skipped = requirext("jmrModelSkippedModule"),
+//    _sys = requirext("jmrModelSystemModule"),
 
 var _moduleMapper = function () {
 
@@ -47,13 +47,13 @@ if (typeof exports !== 'undefined') {
         // nodejs support
         _moduleMapper.internal({
             enumm: require("./Enum.js"),
-            tcase: requirext("jmr.model.tcase"),
-            tsuites: requirext("jmr.model.tsuites"),
-            tsuite: requirext("jmr.model.tsuite"),
-            err: requirext("jmr.model.err"),
-            failure: requirext("jmr.model.failure"),
-            skipped: requirext("jmr.model.skipped"),
-            sys: requirext("jmr.model.system")
+            tcase: requirext("jmrModelTCaseModule"),
+            tsuites: requirext("jmrModelTSuitesModule"),
+            tsuite: requirext("jmrModelTSuiteModule"),
+            err: requirext("jmrModelErrModule"),
+            failure: requirext("jmrModelFailureModule"),
+            skipped: requirext("jmrModelSkippedModule"),
+            sys: requirext("jmrModelSystemModule")
         });
         _moduleMapper.init();
         module.exports = _moduleMapper.map;
@@ -61,14 +61,14 @@ if (typeof exports !== 'undefined') {
     }
 } else {
     define([
-        "jmr.enum",
-        "jmr.model.tcase",
-        "jmr.model.tsuites",
-        "jmr.model.tsuite",
-        "jmr.model.err",
-        "jmr.model.failure",
-        "jmr.model.skipped",
-        "jmr.model.system"], function (enumm,
+        "jmrEnumModule",
+        "jmrModelTCaseModule",
+        "jmrModelTSuitesModule",
+        "jmrModelTSuiteModule",
+        "jmrModelErrModule",
+        "jmrModelFailureModule",
+        "jmrModelSkippedModule",
+        "jmrModelSystemModule"], function (enumm,
         tcase,
         tsuites,
         tsuite,

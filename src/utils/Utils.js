@@ -10,7 +10,7 @@ var _jmrModuleUtils = function () {
         validargs: function (config) {
 
             if (!config) {
-                _jmrModuleUtils.logger().warn("[jmr.utils.validargs] The passed argument(s) is/are not valid");
+                _jmrModuleUtils.logger().warn("[jmrUtilsModule.validargs] The passed argument(s) is/are not valid");
                 return false;
             }
 

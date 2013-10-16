@@ -68,7 +68,7 @@ if (typeof exports !== 'undefined') {
     /**
      * Note: For reporter support add to the dependencies the new reporter type
      */
-    define(["jsutils", "jmr.reporter.junit"], function (jsutils, junitreporter) {
+    define(["jsutils", "jmrReporterJunitModule"], function (jsutils, junitreporter) {
 
         _jmrConfigModule = new _jmrConfigModuleClass({jsutilsobj: jsutilsObject, reporters: {"junit": junitreporter}});
 

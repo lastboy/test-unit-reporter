@@ -1,10 +1,21 @@
-node  node_modules/requirejs/bin/r.js -o build.js
+require based
+================
+
+node  node_modules/requirejs/bin/r.js -o build-require.js
 
 test for the browser:
-run the server test: node web-server.js
+run the server test: node web-server.js index-require.html
 
 test for the node:
 npm test
+node clean.js // cleaning the 'tests' report folder
 
 Both using the same test.js file
 
+
+flat
+================
+node build-flat.js
+
+test for the browser:
+run the server test: node web-server.js

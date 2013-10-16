@@ -81,7 +81,7 @@ if (typeof exports !== 'undefined') {
         module.exports = _jmrReporterModel.model;
     }
 } else {
-    define(["typedas"], function (typedasref) {
+    define(["typedAs"], function (typedasref) {
         // browser support
 
         _jmrReporterModel.internal({typedas: typedAs});

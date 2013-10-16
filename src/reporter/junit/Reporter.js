@@ -105,10 +105,10 @@ if (typeof exports !== 'undefined') {
             _basereporter = require("./../ReporterModel.js"),
             libxmljs = require('libxmljs'),
             _fs = require("fs.extra"),
-            _utils = requirext("jmr.utils"),
+            _utils = requirext("jmrUtilsModule"),
             _log = _utils.logger(),
             _jsutils = require("js.utils"),
-            _antutils = requirext("jmr.utils.ant");
+            _antutils = requirext("jmrUtilsAntModule");
 
 
         _jmrJunitReporter = new _jmrJunitReporterClass({
@@ -123,7 +123,7 @@ if (typeof exports !== 'undefined') {
         module.exports = _jmrJunitReporter;
     }
 } else {
-    define(["jmr.reporter.model", "jsutils", "jmr.utils"], function (jmrreportermodel, jsutils, jmrutils) {
+    define(["jmrReporterModelModule", "jsutils", "jmrUtilsModule"], function (jmrreportermodel, jsutils, jmrutils) {
 
         _jmrJunitReporter = new _jmrJunitReporterClass({
             log: jmrutils.logger(),

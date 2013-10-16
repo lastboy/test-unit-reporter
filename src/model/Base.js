@@ -17,7 +17,7 @@ var _jmrModuleObject = function () {
             } else {
                 if (!_vars.mapperwait) {
                     _vars.mapperwait = 1;
-                    require(["jmr.mapper"], function (mapper) {
+                    require(["jmrMapperModule"], function (mapper) {
                         _vars.mapper = mapper;
                         _vars.mapperwait = 0;
                         if (callback) {
@@ -350,15 +350,15 @@ if (typeof exports !== 'undefined') {
         _jmrModuleObject.internal({
             typedas: require("typedas"),
             jsutilsobj: require("js.utils").Object,
-            utils: requirext("jmr.utils"),
-            log: requirext("jmr.utils").logger(),
+            utils: requirext("jmrUtilsModule"),
+            log: requirext("jmrUtilsModule").logger(),
             tplutils: require("js.utils").Template
         });
         module.exports = _jmrModuleObject;
 
     }
 } else {
-    define(["typedas", "jsutils", "jmr.utils", "jmr.config", "jmr.templates.bundle"], function (typedasref, jsutils, utils, jmrconfig, tplbundle) {
+    define(["typedAs", "jsutils", "jmrUtilsModule", "jmrConfigModule", "jmrTemplatesBundleModule"], function (typedasref, jsutils, utils, jmrconfig, tplbundle) {
 
         _jmrModuleObject.internal({
             typedas: typedAs,

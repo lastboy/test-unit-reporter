@@ -137,13 +137,13 @@ function apiTest(tmr) {
         }
     } else {
 
-        jmrOnReady = function (jmr) {
+        // require version : jmrOnReady = function (jmr) {
             console.log("\n\n** API Test ************");
             apiTest(jmr);
 
             console.log("\n\n** Generate by configuration Test ************");
             generateTest(jmr);
-        };
+        // require version };
 
     }
 

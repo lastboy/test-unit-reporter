@@ -4,7 +4,7 @@ var _xml2js = require("xml2js"),
     _typedas = require("typedas"),
     _path = require("path"),
     _baseAnt,
-    _utils = requirext("jmr.utils"),
+    _utils = requirext("jmrUtilsModule"),
     _log = _utils.logger();
 
 // ant temp file creation hack
