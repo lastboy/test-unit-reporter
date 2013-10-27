@@ -1,7 +1,7 @@
 {
     "name": "test-model-reporter",
     "description": "Create a pure JavaScript object model based on JUnit methodology",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "author": "Arik Lewin (https://github.com/lastboy)",
     "homepage": "https://github.com/lastboy",
     "repository": {
@@ -19,7 +19,7 @@
     ],
     "main": "tmr.js",
     "scripts": {
-        "test": "node test.js"
+        "test": "node ./test/test.js"
     },
     "engines": {
         "node": ">= 0.8.0"
@@ -35,7 +35,7 @@
     "dependencies": {
         "typedas": "~1.0.0",
         "underscore": "~1.5.2",
-        "js.utils": "~0.0.1",
+        "js.utils": "~0.1.2",
         "libxmljs": "~0.8.1",
         "fs.extra": "~1.2.1",
         "xml2js": "~0.2.8",
@@ -44,7 +44,11 @@
     "devDependencies": {
         "ant": "~0.2.0",
         "amdclean": "~0.2.6",
-        "concat-files": "~0.1.0"
+        "concat-files": "~0.1.0",
+        "grunt": "~0.4.1",
+        "grunt-contrib-uglify": "~0.2.2",
+        "grunt-contrib-concat": "~0.3.0",
+        "grunt-contrib-clean": "~0.4.0"
     },
     "contributors": [
         "Arik Lewin (https://github.com/lastboy)"

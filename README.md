@@ -62,7 +62,7 @@ You can create an HTML site using Ant Reporter.
     // tell ant where are your tests and where to put your HTML output
     // Ant will collect all your *Test.xml files from test folder
     jmr.report({
-            reportsdir:"tests/reports",
+            reportsdir: "tests/reports",
             testsdir: "tests"
         });}
 
@@ -103,6 +103,26 @@ In case you generates an object with all of your data, much simpler to burst it 
 
 
 ## Versions
+
+### 0.0.4
+RequireJS dependency removed.
+
+* download the browser version
+    + with NO dependencies: [tmr-min.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-min.js)
+        + manually download
+            + [Underscore](http://underscorejs.org/)
+            + [Typedas](https://raw.github.com/alexduloz/typedAs/gh-pages/typedAs.js)
+            + [jsutils-min.js](https://raw.github.com/lastboy/js.utils/master/target/jsutils-min.js)
+
+    + with dependencies: [tmr-min-all.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-min-all.js)
+        + typedas, underscore and js.utils are already inside
+
+* Usage
+    + test-model-reporter global variables for the web:
+        + jmr || testModelReporter;
+
+* Ant reporter, issue with MAC
+    + After Ant Npm installed edit the ../bin/ant file according to the [following fix](https://issues.apache.org/bugzilla/show_bug.cgi?id=52632)
 
 ### 0.0.3
 Support for a none AMD browser version.

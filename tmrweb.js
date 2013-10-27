@@ -1,6 +1,9 @@
-var jmr;
+var jmrweb = this;
+
+jmrweb.testModelReporter = jmrweb.jmr = {};
+
 define(["jmrModule", "jmrBaseModule"], function (jmrarg, basearg) {
-    jmr = jmrarg;
+    jmrweb.testModelReporter = jmrweb.jmr = jmrarg;
     basearg.loadMapper(function () {
 
     });

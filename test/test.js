@@ -121,7 +121,7 @@ function apiTest(tmr) {
 
             var testfolder = "./tests";
 
-            tmr = require('./tmr.js');
+            tmr = require('./../tmr.js');
             fs = require("fs");
 
             if (!fs.existsSync(testfolder)) {
@@ -137,13 +137,24 @@ function apiTest(tmr) {
         }
     } else {
 
-        // require version : jmrOnReady = function (jmr) {
+        function browserCall(jmr) {
+
             console.log("\n\n** API Test ************");
             apiTest(jmr);
 
             console.log("\n\n** Generate by configuration Test ************");
             generateTest(jmr);
-        // require version };
+
+        }
+
+        if (typeof require != "undefined") {
+            jmrOnReady = function (jmr) {
+                browserCall(jmr);
+            };
+        } else {
+            browserCall(testModelReporter);
+            browserCall(jmr);
+        }
 
     }
 

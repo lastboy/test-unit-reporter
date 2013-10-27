@@ -10,12 +10,12 @@ tmrthis.underscore = (typeof _ !== "undefined" ? _ : undefined);
 
 requirejs.optimize({
 
-    baseUrl: ".",
+    baseUrl: "../",
 
     paths: {
         "typedAs": "node_modules/typedas/typedAs",
         "underscore": "node_modules/underscore/underscore-min",
-        "jsutils": "node_modules/js.utils/jsutils-min",
+        "jsutils": "node_modules/js.utils/target/jsutils-min",
 
         "jmrModule": "tmr",
         "jmrBaseModule": "./src/model/Base",
@@ -62,7 +62,7 @@ requirejs.optimize({
 
     findNestedDependencies: false,
     wrap: false,
-    optimize: 'uglify',
+    //optimize: 'none',
 
 
     exclude: [
@@ -83,12 +83,12 @@ requirejs.optimize({
 
 requirejs.optimize({
 
-    baseUrl: ".",
+    baseUrl: "../",
 
     paths: {
         "typedAs": "node_modules/typedas/typedAs",
         "underscore": "node_modules/underscore/underscore-min",
-        "jsutils": "node_modules/js.utils/jsutils-min",
+        "jsutils": "node_modules/js.utils/target/jsutils-min",
 
         "jmrModule": "tmr",
         "jmrBaseModule": "./src/model/Base",
@@ -134,7 +134,7 @@ requirejs.optimize({
 
     findNestedDependencies: false,
     wrap: false,
-    optimize: 'uglify',
+    //optimize: 'none',
 
 
     include: ["jmrMapperModule"],
@@ -153,13 +153,13 @@ requirejs.optimize({
 });
 
 
-var concat = require('concat-files');
-concat([
-    'node_modules/typedas/typedAs.js',
-    "node_modules/underscore/underscore-min.js",
-    "node_modules/js.utils/jsutils-min.js",
-    './tmr-mapper-min.js',
-    './tmr-base-min.js'
-], 'tmr-min.js', function () {
-    console.log('tmr-min.js created');
-});
+//var concat = require('concat-files');
+//concat([
+//    'node_modules/typedas/typedAs.js',
+//    "node_modules/underscore/underscore-min.js",
+//    "node_modules/js.utils/jsutils-min.js",
+//    './tmr-mapper-min.js',
+//    './tmr-base-min.js'
+//], 'tmr-min.js', function () {
+//    console.log('tmr-min.js created');
+//});

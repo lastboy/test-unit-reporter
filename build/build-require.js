@@ -1,11 +1,16 @@
-({
+var requirejs = require('requirejs'),
+    jsutils = this;
 
-    baseUrl:".",
+jsutils.underscore = (typeof _ !== "undefined" ? _ : undefined);
+
+requirejs.optimize({
+
+    baseUrl: "../",
 
     paths:{
         "typedAs": "node_modules/typedas/typedAs",
         "underscore": "node_modules/underscore/underscore-min",
-        "jsutils": "node_modules/js.utils/jsutils-min",
+        "jsutils": "node_modules/js.utils/target/jsutils-min",
 
         "jmrModule": "tmr",
         "jmrBaseModule": "./src/model/Base",
@@ -34,7 +39,20 @@
     },
 
     out: "tmr-require-min.js",
-    name: "tmrwebRequire"
+    name: "tmrwebRequire",
+
+    optimize: "none",
+
+    exclude: ["typedAs", "underscore", "jsutils"],
 
 
-})
+    findNestedDependencies: true,
+    wrap: false
+
+
+}, function() {
+    console.log('build successfully...');
+
+}, function (err) {
+    console.log(err);
+});
