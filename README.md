@@ -108,13 +108,13 @@ In case you generates an object with all of your data, much simpler to burst it 
 RequireJS dependency removed.
 
 * download the browser version
-    + with NO dependencies: [tmr-min.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-min.js)
+    + with NO dependencies: [tmr-min.js](https://raw.github.com/lastboy/test-unit-reporter/master/target/tmr-min.js)
         + manually download
             + [Underscore](http://underscorejs.org/)
             + [Typedas](https://raw.github.com/alexduloz/typedAs/gh-pages/typedAs.js)
             + [jsutils-min.js](https://raw.github.com/lastboy/js.utils/master/target/jsutils-min.js)
 
-    + with dependencies: [tmr-min-all.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-min-all.js)
+    + with dependencies: [tmr-min-all.js](https://raw.github.com/lastboy/test-unit-reporter/master/target/tmr-min-all.js)
         + typedas, underscore and js.utils are already inside
 
 * Usage
