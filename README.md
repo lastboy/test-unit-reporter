@@ -7,7 +7,7 @@ Currently this module supports JUnit xml reporter including:
 
 * validation against junit.xsd
 * Report utility that generates a local HTML report for you to validate before it gets to the e.g. Jenkins
-
+ 
 
 ## How To
 The JUnit classes are available with their properties according to the junit.xsd
