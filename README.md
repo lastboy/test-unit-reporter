@@ -104,6 +104,10 @@ In case you generates an object with all of your data, much simpler to burst it 
 
 ## Versions
 
+### 0.0.6
+* Consolidate package dependencies
+* Report generation fix when running under node.js
+
 ### 0.0.4
 RequireJS dependency removed.
 

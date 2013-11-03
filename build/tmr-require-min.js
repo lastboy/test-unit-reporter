@@ -130,7 +130,15 @@ var _jmrJunitReporter,
     _jmrJunitReporterClass = function (vars) {
 
         var _getTemplateURL = function () {
-                return [this.get("root"), this.get("name"), "templates"].join("/");
+
+
+            if (typeof exports !== 'undefined') {
+                if (typeof module !== 'undefined' && module.exports) {
+                    return vars.path.join(__dirname, "templates");
+                }
+            } else {
+                    return [this.get("root"), this.get("name"), "templates"].join("/");
+                }
             },
 
             _validate = function (report) {
