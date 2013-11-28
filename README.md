@@ -5,7 +5,6 @@ Create a pure JavaScript object mode based on JUnit methodology and produce a re
 This module can be easily extended to any report style you need.<br/>
 Currently this module supports JUnit xml reporter including:
 
-* validation against junit.xsd
 * Report utility that generates a local HTML report for you to validate before it gets to the e.g. Jenkins
 
 
@@ -44,16 +43,8 @@ The model can be crated using an API like so:
         testsuite.add(testcase);
 
 
-### With that :
-You can validate your model against the XSD file:
+### With that:
 
-    // compile the model to an output
-    var output = testsuite.compile();
-    // validate the output against the XSD file
-    jmr.validate(output)
-
-
-### And then
 You can create an HTML site using Ant Reporter.
 
     // write your file to the tests folder
@@ -64,7 +55,7 @@ You can create an HTML site using Ant Reporter.
     jmr.report({
             reportsdir: "tests/reports",
             testsdir: "tests"
-        });}
+        });
 
 
 ### Another example
@@ -103,6 +94,10 @@ In case you generates an object with all of your data, much simpler to burst it 
 
 
 ## Versions
+
+### 0.0.7
+Report validation API is obsolete, the libxmljs dependency has been removed.
+In case you still wish to some sort of validation @see NPM js.utils XML module
 
 ### 0.0.4
 RequireJS dependency removed.
@@ -170,14 +165,7 @@ Assign a ready event:
     + output {String} The generate output model
     + model {Object} The generated object model
 
-
-<p>Validate the report (if supported by the reporter)</p>
-* validate(report)
-    + report {String} The generated output mode
-
-
 <p>Generate a report (if supported by the reporter)</p>
-
 * report(config)
     + config {Object} The configuration to be passed to the reporter
 
@@ -196,13 +184,13 @@ Assign a ready event:
 
 
 ## Contribute
-This package can be extended to support additional reporters.
 
+<p>This package can be extended to support additional reporters.</p>
 * Create a folder name based on your reporter name e.g. ./src/reporter/dot
 * Create a templates folder below your reporter root folder
 * With Mustache syntax create your templates including the incoming data
 * Implement Reporter.js class
-    + implement validate method (optional)
     + implement report method (optional)
+
 
 See ./src/reporter/junit reporter for more information
