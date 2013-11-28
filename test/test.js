@@ -54,9 +54,6 @@ function generateTest(tmr) {
                 fs.unlinkSync(testfile);
             }
             tmr.write(testfile, obj.output);
-
-            // validate the report agains the junit xsd
-            console.log("\nValidating report, the report is: " + (tmr.validate(obj.output) ? "valid" : "not valid"));
         }
     }
 }
