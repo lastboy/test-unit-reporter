@@ -97,7 +97,7 @@ In case you generates an object with all of your data, much simpler to burst it 
 
 ### 0.0.7
 Report validation API is obsolete, the libxmljs dependency has been removed.
-In case you still wish to some sort of validation @see NPM js.utils XML module
+In case you still wish to do some sort of validation @see NPM js.utils XML module
 
 ### 0.0.4
 RequireJS dependency removed.
