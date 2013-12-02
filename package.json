@@ -1,7 +1,7 @@
 {
     "name": "test-model-reporter",
     "description": "Create a pure JavaScript object model based on JUnit methodology",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "author": "Arik Lewin (https://github.com/lastboy)",
     "homepage": "https://github.com/lastboy",
     "repository": {
@@ -38,10 +38,10 @@
         "js.utils": "~0.1.2",
         "fs.extra": "~1.2.1",
         "xml2js": "~0.2.8",
-        "requirejs": "~2.1.8"
+        "requirejs": "~2.1.8",
+        "ant": "~0.2.0"
     },
     "devDependencies": {
-        "ant": "~0.2.0",
         "amdclean": "~0.2.6",
         "concat-files": "~0.1.0",
         "grunt": "~0.4.1",
