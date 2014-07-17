@@ -358,11 +358,11 @@ if (typeof exports !== 'undefined') {
 
     }
 } else {
-    define(["typedAs", "jsutils", "jmrUtilsModule", "jmrConfigModule", "jmrTemplatesBundleModule"], function (typedasref, jsutils, utils, jmrconfig, tplbundle) {
+    define(["jmrUtilsModule", "jmrConfigModule", "jmrTemplatesBundleModule"], function ( utils, jmrconfig, tplbundle) {
 
         _jmrModuleObject.internal({
             typedas: typedAs,
-            jsutilsobj: jsutilsObject,
+            jsutilsobj: jsutils.jsutilsObject,
             utils: utils,
             log: utils.logger(),
             tplutils: jsutilsTemplate,

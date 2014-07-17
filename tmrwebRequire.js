@@ -1,6 +1,6 @@
 var jmrOnReady = function () {
     console.log("Test Model Reporter is ready (jmrOnReady callback can be overriden [e.g. jmrOnReady=function(tmr){}]");
-};
+}, jmr;
 
 /**
  * RequireJS Main Configuration
@@ -12,7 +12,7 @@ require.config({
     paths: {
         "typedAs": "node_modules/typedas/typedAs",
         "underscore": "node_modules/underscore/underscore-min",
-        "jsutils": "node_modules/js.utils/jsutils-min",
+        "jsutils": "node_modules/js.utils/target/jsutils-require-min",
 
         "jmrModule": "tmr",
         "jmrBaseModule": "./src/model/Base",
@@ -40,26 +40,35 @@ require.config({
 
     },
 
+    shim: {
+        'typedAs': {
+            exports: "typedAs"
+        },
+        'underscore': {
+            exports: "_"
+        },
+        "jsutils": {
+            deps: ["typedAs", "underscore"],
+            exports: "jsutils"
+        },        
+        "jmrReporterJunitModule": {
+            deps: ["jsutils"]
+        },
+        "jmrModule": {
+            deps: ["jsutils"]
+        },
+        "jmrConfigModule": {
+            deps: ["jsutils"]
+        }
+    },
+    
     out: "tmr-min.js",
     name: "tmrweb"
 
 });
 
 
-
-require(["jmrModule", "jmrBaseModule"], function (jmr, base) {
-
-    var jmrOnReadyListener,
-        jmrOnReadyDefaultListener = function() {
-            console.log("js.utils is ready (jmrOnReady callback can be overriden [e.g. jmrOnReady=function(obj, arr, tpl){}]");
-        };
-
-    base.loadMapper(function () {
-        if (typeof jmrOnReady !== "undefined") {
-            jmrOnReadyListener = jmrOnReady;
-        } else {
-            jmrOnReadyListener = jmrOnReadyDefaultListener;
-        }
-        jmrOnReadyListener.call(this, jmr);
-    });
+require(["jmrModule"], function (jmrModule) {
+    jmr = jmrModule;
+    
 });

@@ -119,9 +119,8 @@ if (typeof exports !== 'undefined') {
 
     }
 } else {
-    define(["typedAs", "jsutils", "jmrUtilsModule", "jmrEnumModule", "jmrBaseModule"], function(
+    define(["typedAs", "jmrUtilsModule", "jmrEnumModule", "jmrBaseModule"], function(
         typedasref,
-        jsutils,
         utils,
         _enum,
         _base

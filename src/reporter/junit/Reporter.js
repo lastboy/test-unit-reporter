@@ -106,11 +106,11 @@ if (typeof exports !== 'undefined') {
         module.exports = _jmrJunitReporter;
     }
 } else {
-    define(["jmrReporterModelModule", "jsutils", "jmrUtilsModule"], function (jmrreportermodel, jsutils, jmrutils) {
+    define(["jmrReporterModelModule", "jmrUtilsModule"], function (jmrreportermodel, jmrutils) {
 
         _jmrJunitReporter = new _jmrJunitReporterClass({
             log: jmrutils.logger(),
-            jsutils: jsutilsTemplate,
+            jsutils: jsutils.jsutilsTemplate,
             basereporter: jmrreportermodel,
             report: function () {
             }

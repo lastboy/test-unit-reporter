@@ -85,6 +85,24 @@ var _jmrModule,
             report: function (config) {
 
 
+            },
+            
+            listen: function(jmrOnReady) {
+                
+                var jmrOnReadyListener,
+                    jmrOnReadyDefaultListener = function() {
+                        console.log("js.utils is ready (jmrOnReady callback can be overriden [e.g. jmrOnReady=function(obj, arr, tpl){}]");
+                    };
+
+                vars.base.loadMapper(function () {
+                    if (typeof jmrOnReady !== "undefined") {
+                        jmrOnReadyListener = jmrOnReady;
+
+                    } else {
+                        jmrOnReadyListener = jmrOnReadyDefaultListener;
+                    }
+                    jmrOnReadyListener.call(this, _jmrModule);
+                });
             }
 
         };
@@ -188,12 +206,13 @@ if (typeof exports !== 'undefined') {
         module.exports = _jmrModule;
     }
 } else {
-    define(["jmrConfigModule", "jmrUtilsModule", "jmrModelUtilsModule"], function (jmrconfig, jmrutils, jmrmutils) {
+    define(["jmrConfigModule", "jmrUtilsModule", "jmrModelUtilsModule", "jmrBaseModule"], function (jmrconfig, jmrutils, jmrmutils, jmrbase) {
 
         _jmrModule = new _jmrModuleClass({
             utils: jmrutils,
             log: jmrutils.logger(),
-            mutils: jmrmutils
+            mutils: jmrmutils,
+            base: jmrbase
         });
 
 

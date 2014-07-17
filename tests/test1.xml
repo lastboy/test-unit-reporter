@@ -1,0 +1,1 @@
+<testsuites name="test.suites.1" disabled="false" errors="0" failures="1"  tests="1"    ><testsuite id="$2"  name="test.suite.1"   errors="0"  failures="1"    package="test.test"  tests="1"   ><testcase name="test.case"  classname="class1"  time="now"><failure  type="fail" >erwerwe</failure></testcase></testsuite> </testsuites>

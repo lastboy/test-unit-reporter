@@ -10,7 +10,7 @@ requirejs.optimize({
     paths:{
         "typedAs": "node_modules/typedas/typedAs",
         "underscore": "node_modules/underscore/underscore-min",
-        "jsutils": "node_modules/js.utils/target/jsutils-min",
+        "jsutils": "node_modules/js.utils/target/jsutils-require-min",
 
         "jmrModule": "tmr",
         "jmrBaseModule": "./src/model/Base",
@@ -38,6 +38,28 @@ requirejs.optimize({
 
     },
 
+    shim: {
+        'typedAs': {
+            exports: "typedAs"
+        },
+        'underscore': {
+            exports: "_"
+        },
+        "jsutils": {
+            deps: ["underscore", "typedAs"],
+            exports: "jsutils"
+        },
+        "jmrReporterJunitModule": {
+            deps: ["jsutils"]
+        },
+        "jmrModule": {
+            deps: ["jsutils"]
+        },
+        "jmrConfigModule": {
+            deps: ["jsutils"]
+        }
+    },
+    
     out: "tmr-require-min.js",
     name: "tmrwebRequire",
 

@@ -1,6 +1,7 @@
 console.log("JUnit Model Reporter Test....");
 var tmr,
-    fs;
+    fs,
+    jmrOnReady ;
 
 // TODO check what tests should count...
 function generateTest(tmr) {
@@ -145,9 +146,15 @@ function apiTest(tmr) {
         }
 
         if (typeof require != "undefined") {
-            jmrOnReady = function (jmr) {
-                browserCall(jmr);
-            };
+            define([], function() {
+
+                var jmrOnReady = function (jmr) {
+                    browserCall(jmr);
+                };
+                return {jmrOnReady: jmrOnReady};
+                
+            });
+            
         } else {
             browserCall(testModelReporter);
             browserCall(jmr);

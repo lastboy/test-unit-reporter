@@ -1,16 +1,26 @@
 var _xml2js = require("xml2js"),
     _parser = new _xml2js.Parser(),
-    _ant = require('ant'),
+    _ant,
     _typedas = require("typedas"),
     _path = require("path"),
     _baseAnt,
     _utils = requirext("jmrUtilsModule"),
-    _log = _utils.logger();
+    _log = _utils.logger(),
+    _colors = require('colors');
 
 // ant temp file creation hack
 _baseAnt = _path.join(global.jmrbase, "node_modules", "ant", "ant", "bin");
-_ant.TMP_PATH = global.jmrbase;
-_ant.ANT_PATH = _baseAnt + "/ant";
+try {
+    _ant = require('ant');
+} catch(e) {
+    _log.warn("[tmr] Ant NPM is not installed by default, install it manually for getting the ant report (it can be found in the package.json)".red);
+    
+}
+
+if (_ant) {
+    _ant.TMP_PATH = global.jmrbase;
+    _ant.ANT_PATH = _baseAnt + "/ant";
+}
 
 module.exports = function() {
 
@@ -60,16 +70,17 @@ module.exports = function() {
                     _prs(result, out);
 
 
-                    _ant.exec(out, function(err, stdout, stderror){
-                        // it doesn't throw any errors and also doesn't log the stdout by
-                        // default that way you can control what you want to do.
-                        if (stdout) console.log(stdout);
-                        if (stderror) console.log(stderror);
-                        if (err) {
-                            console.error(err);
-                        }
-                    });
-
+                    if (_ant) {
+                        _ant.exec(out, function(err, stdout, stderror){
+                            // it doesn't throw any errors and also doesn't log the stdout by
+                            // default that way you can control what you want to do.
+                            if (stdout) console.log(stdout);
+                            if (stderror) console.log(stderror);
+                            if (err) {
+                                console.error(err);
+                            }
+                        });
+                    }
                 });
 
         }
