@@ -1,1 +1,0 @@
-<testsuite   name="testsuite"   errors="0"  failures="1"      tests="1"   ><testcase name="This is the test name"    time="now"><failure message="This is a faulire message" type="SomeAssertionBal" ></failure></testcase></testsuite>
