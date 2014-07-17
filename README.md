@@ -57,6 +57,8 @@ You can create an HTML site using Ant Reporter.
             testsdir: "tests"
         });
 
+**Note: Ant dependency is not installed. You can find it in the dev dependency section.**
+
 
 ### Another example
 In case you generates an object with all of your data, much simpler to burst it like so:
@@ -93,14 +95,30 @@ In case you generates an object with all of your data, much simpler to burst it 
     });
 
 
-## Versions
+## Browser Support
 
-### 0.0.7
-Report validation API is obsolete, the libxmljs dependency has been removed.
-In case you still wish to do some sort of validation @see NPM js.utils XML module
+### Usage
 
-### 0.0.4
-RequireJS dependency removed.
+* AMD
+
+    * See tmrwebRequire-min.js file, as an example of requirejs project style
+    
+        define([], function() {
+
+            var jmrOnReady = function (jmr) {
+                // use the "jmr" object   
+            };
+            return jmrOnReady;
+            
+        });
+           
+* None AMD
+
+        // Use "jmr" or "testModelReporter" objects 
+            
+            
+            
+### Download
 
 * download the browser version
     + with NO dependencies: [tmr-min.js](https://raw.github.com/lastboy/test-unit-reporter/master/target/tmr-min.js)
@@ -112,32 +130,11 @@ RequireJS dependency removed.
     + with dependencies: [tmr-min-all.js](https://raw.github.com/lastboy/test-unit-reporter/master/target/tmr-min-all.js)
         + typedas, underscore and js.utils are already inside
 
-* Usage
-    + test-model-reporter global variables for the web:
-        + jmr || testModelReporter;
 
+## Troubleshooting
+ 
 * Ant reporter, issue with MAC
     + After Ant Npm installed edit the ../bin/ant file according to the [following fix](https://issues.apache.org/bugzilla/show_bug.cgi?id=52632)
-
-### 0.0.3
-Support for a none AMD browser version.
-
-* download browser version with NO dependency, download: [tmr-min.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-min.js)
-    + Just use 'jmr' as global variable
-
-* download browser version with require dependency, download: [tmr-require-min.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-require-min.js)
-    + Still need to use 'jmrOnReady' Listener as described below
-
-
-### 0.0.2
-
-Support for the browser version,
-Download: [tmr-require-min.js](https://raw.github.com/lastboy/test-model-reporter/master/tmr-require-min.js)
-
-Assign a ready event:
-
-    jmrOnReady = function(tmr){
-    };
 
 
 ## Reference
