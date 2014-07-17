@@ -13,7 +13,7 @@ _baseAnt = _path.join(global.jmrbase, "node_modules", "ant", "ant", "bin");
 try {
     _ant = require('ant');
 } catch(e) {
-    _log.warn("[tmr] Ant NPM is not installed by default, install it manually for getting the ant report (it can be found in the package.json)".red);
+    //_log.warn("[tmr] Ant NPM is not installed by default, install it manually for getting the ant report (it can be found in the package.json)".red);
     
 }
 
