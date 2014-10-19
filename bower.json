@@ -7,8 +7,15 @@
   ],
   "description": "Test Model Reporter (JUnit)",
   "license": "MIT",
+  "main": [
+    "target/tmr-min.js",
+    "target/tmr-min-all.js",
+    "target/tmr-base-min.js",
+    "target/tmr-mapper-min.js",
+    "target/tmr-require-min.js"
+  ],
   "ignore": [
-    "**/.*",
+    "*.*",
     "bower_components",
     "build",
     "src",
