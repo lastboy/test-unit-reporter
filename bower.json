@@ -9,8 +9,7 @@
   "license": "MIT",
   "ignore": [
     "*.txt",
-    "*.js",
-    "*.json",
+    "*.*ignore",
     "bower_components",
     "build",
     "src",
