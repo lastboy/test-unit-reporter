@@ -8,8 +8,7 @@
   "description": "Test Model Reporter (JUnit)",
   "license": "MIT",
   "ignore": [
-    "*.txt",
-    "*.*ignore",
+    "./*.*",
     "bower_components",
     "build",
     "src",
