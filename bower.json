@@ -1,5 +1,5 @@
 {
-  "name": "tmr",
+  "name": "test-unit-reporter",
   "version": "0.0.1",
   "homepage": "https://github.com/lastboy/test-unit-reporter",
   "authors": [
@@ -7,13 +7,6 @@
   ],
   "description": "Test Model Reporter (JUnit)",
   "license": "MIT",
-  "main": [
-    "target/tmr-min.js",
-    "target/tmr-min-all.js",
-    "target/tmr-base-min.js",
-    "target/tmr-mapper-min.js",
-    "target/tmr-require-min.js"
-  ],
   "ignore": [
     "*ignore*.*",
     "*.txt",
