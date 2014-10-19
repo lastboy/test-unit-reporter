@@ -8,7 +8,7 @@
   "description": "Test Model Reporter (JUnit)",
   "license": "MIT",
   "ignore": [
-    "*ignore*.*",
+    "*.*ignore",
     "*.txt",
     "*.js",
     "*.json",
