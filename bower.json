@@ -1,0 +1,19 @@
+{
+  "name": "tmr",
+  "version": "0.0.1",
+  "homepage": "https://github.com/lastboy/test-unit-reporter",
+  "authors": [
+    "arik <lewin.arik@gmail.com>"
+  ],
+  "description": "Test Model Reporter (JUnit)",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "build",
+    "src",
+    "test"
+  ],
+  "dependencies": {
+  }
+}
