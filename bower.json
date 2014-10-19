@@ -15,7 +15,10 @@
     "target/tmr-require-min.js"
   ],
   "ignore": [
-    "*.*",
+    "*ignore*.*",
+    "*.txt",
+    "*.js",
+    "*.json",
     "bower_components",
     "build",
     "src",
