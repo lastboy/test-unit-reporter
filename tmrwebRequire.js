@@ -10,11 +10,10 @@ require.config({
     baseUrl: ".",
 
     paths: {
-        "typedAs": "node_modules/typedas/typedAs",
         "underscore": "node_modules/underscore/underscore-min",
         "jsutils": "node_modules/js.utils/target/jsutils-require-min",
 
-        "jmrModule": "tmr",
+        "jmrModule": "./tmr",
         "jmrBaseModule": "./src/model/Base",
         "jmrMapperModule": "./src/model/Mapper",
         "jmrEnumModule": "./src/model/Enum",
@@ -41,14 +40,11 @@ require.config({
     },
 
     shim: {
-        'typedAs': {
-            exports: "typedAs"
-        },
         'underscore': {
             exports: "_"
         },
         "jsutils": {
-            deps: ["typedAs", "underscore"],
+            deps: ["underscore"],
             exports: "jsutils"
         },        
         "jmrReporterJunitModule": {
@@ -63,12 +59,20 @@ require.config({
     },
     
     out: "tmr-min.js",
-    name: "tmrweb"
+    name: "tmr"
 
 });
 
 
+require(["jsutils"], function () {
+
+    
+});
+
+/*
+TODO need to be fixed ... it fails on building the minified version
 require(["jmrModule"], function (jmrModule) {
     jmr = jmrModule;
     
 });
+*/

@@ -45,8 +45,7 @@ if (typeof exports !== 'undefined') {
 
     }
 } else {
-    define(["typedAs", "jmrUtilsModule", "jmrEnumModule", "jmrBaseModule"], function(
-        typedasref,
+    define(["jmrUtilsModule", "jmrEnumModule", "jmrBaseModule"], function(
         utils,
         _enum,
         _base

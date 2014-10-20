@@ -29,8 +29,7 @@ function generateTest(tmr) {
                                         {
                                             type: "model.failure",
                                             data: {
-                                                type: "fail",
-                                                body: "erwerwe"
+                                                type: "fail"
                                             }
                                         }
                                     ]
@@ -130,7 +129,8 @@ function apiTest(tmr) {
             apiTest(tmr);
 
             console.log("\n\n** Generate by configuration Test ************");
-            generateTest(tmr);
+            
+            (tmr);
 
         }
     } else {

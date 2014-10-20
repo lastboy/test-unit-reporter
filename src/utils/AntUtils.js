@@ -1,7 +1,7 @@
 var _xml2js = require("xml2js"),
     _parser = new _xml2js.Parser(),
     _ant,
-    _typedas = require("typedas"),
+    _ = require("underscore"),
     _path = require("path"),
     _baseAnt,
     _utils = requirext("jmrUtilsModule"),
@@ -52,15 +52,15 @@ module.exports = function() {
                                     for (tkey in obj["$"]) {
                                         out["@" + tkey] = obj["$"][tkey];
                                     }
-                                } else if (_typedas.isString(obj[key])) {
+                                } else if (_.isString(obj[key])) {
                                     out[key] = obj[key];
-
-                                } else if (_typedas.isObject(obj[key])) {
-                                    out[key] = {};
-                                    _prs(obj[key], out[key]);
-
-                                } else if (_typedas.isArray(obj[key])) {
+                             
+                                } else if (_.isArray(obj[key])) {
                                     out[key] = [];
+                                    _prs(obj[key], out[key]);
+                                    
+                                } else if (_.isObject(obj[key])) {
+                                    out[key] = {};
                                     _prs(obj[key], out[key]);
                                 }
                             }

@@ -10,7 +10,6 @@ require.config({
     baseUrl: ".",
 
     paths: {
-        "typedAs": "node_modules/typedas/typedAs",
         "underscore": "node_modules/underscore/underscore-min",
         "jsutils": "node_modules/js.utils/target/jsutils-require-min",
         "jmr-lib": "../target/tmr-require-min",
@@ -20,14 +19,11 @@ require.config({
     },
 
     shim: {
-        'typedAs': {
-            exports: "typedAs"
-        },
         'underscore': {
             exports: "_"
         },
         "jsutils": {
-            deps: ["typedAs", "underscore"],
+            deps: ["underscore"],
             exports: "jsutils"
         },
         "jmr-lib": {

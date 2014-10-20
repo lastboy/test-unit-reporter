@@ -1,7 +1,7 @@
 
 var _jmrReporterModel = function() {
 
-    var _typedas,
+    var _underscore,
         _model = function(config) {
 
         var me = this;
@@ -23,7 +23,7 @@ var _jmrReporterModel = function() {
             if (this.config && key) {
 
                 // in case of function property
-                if (value && _typedas.isFunction(value)) {
+                if (value && _underscore.isFunction(value)) {
                     this[key] = function() {
                         return value.apply(me, arguments);
                     }
@@ -62,7 +62,7 @@ var _jmrReporterModel = function() {
     return {
 
         internal: function(vars) {
-            _typedas = vars.typedas;
+            _underscore = vars._;
         },
 
         model: _model
@@ -77,14 +77,14 @@ if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
         // nodejs support
 
-        _jmrReporterModel.internal({typedas: require("typedas")});
+        _jmrReporterModel.internal({_: require("underscore")});
         module.exports = _jmrReporterModel.model;
     }
 } else {
-    define(["typedAs"], function (typedasref) {
+    define(["underscore"], function (underscoreref) {
         // browser support
 
-        _jmrReporterModel.internal({typedas: typedAs});
+        _jmrReporterModel.internal({_: _});
         return _jmrReporterModel.model;
 
 

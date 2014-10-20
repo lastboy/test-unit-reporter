@@ -23,7 +23,7 @@ module.exports = function (grunt) {
                 ] }
             },
             noamdall: {
-                files: { './target/tmr-min-all.js': [ './node_modules/typedas/typedAs.js',
+                files: { './target/tmr-min-all.js': [ 
                     "./node_modules/underscore/underscore-min.js",
                     "./node_modules/js.utils/target/jsutils-min.js",
                     "./target/tmr-min.js"

@@ -84,7 +84,7 @@ var _jmrModuleObject = function () {
         }
         if (config.data) {
 
-            if (_vars.typedas.isObject(config.data)) {
+            if (_vars._.isObject(config.data)) {
                 item = impl.children();
 
                 // In case of children
@@ -107,7 +107,7 @@ var _jmrModuleObject = function () {
                 }
 
                 testbody = impl.data.body;
-                if (testbody && _vars.typedas.isString(testbody)) {
+                if (testbody && _vars._.isString(testbody)) {
                     config.data["body"] = testbody
 
                 } else {
@@ -226,7 +226,7 @@ var _jmrModuleObject = function () {
             var type = config.type,
                 clazz = config.clazz;
 
-            if (type && clazz && _vars.typedas.isFunction(clazz)) {
+            if (type && clazz && _vars._.isFunction(clazz)) {
 
                 _map[type] = new _Model(config);
 
@@ -268,7 +268,7 @@ var _jmrModuleObject = function () {
             this.setall = function (item) {
 
                 var key, value;
-                if (item && _vars.typedas.isObject(item)) {
+                if (item && _vars._.isObject(item)) {
 
                     for (key in item) {
                         if (item.hasOwnProperty(key)) {
@@ -288,7 +288,7 @@ var _jmrModuleObject = function () {
             };
 
             this.children = function () {
-                return ( (this.body && _vars.typedas.isArray(this.body) && this.body.length > 0) ? this.body : null);
+                return ( (this.body && _vars._.isArray(this.body) && this.body.length > 0) ? this.body : null);
             }
 
             /**
@@ -348,7 +348,7 @@ if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
         // nodejs support
         _jmrModuleObject.internal({
-            typedas: require("typedas"),
+            _: require("underscore"),
             jsutilsobj: require("js.utils").Object,
             utils: requirext("jmrUtilsModule"),
             log: requirext("jmrUtilsModule").logger(),
@@ -361,7 +361,7 @@ if (typeof exports !== 'undefined') {
     define(["jmrUtilsModule", "jmrConfigModule", "jmrTemplatesBundleModule"], function ( utils, jmrconfig, tplbundle) {
 
         _jmrModuleObject.internal({
-            typedas: typedAs,
+            _: _,
             jsutilsobj: jsutils.jsutilsObject,
             utils: utils,
             log: utils.logger(),

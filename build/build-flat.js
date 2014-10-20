@@ -13,7 +13,6 @@ requirejs.optimize({
     baseUrl: "../",
 
     paths: {
-        "typedAs": "node_modules/typedas/typedAs",
         "underscore": "node_modules/underscore/underscore-min",
         "jsutils": "node_modules/js.utils/target/jsutils-min",
 
@@ -52,7 +51,6 @@ requirejs.optimize({
         if (!counter) {
             counter++;
             result += "var underscore;";
-            //result += fs.readFileSync("./node_modules/typedas/typedAs.js") + "\n";
             //result += fs.readFileSync("./node_modules/underscore/underscore-min.js") + "\n";
         }
 
@@ -67,7 +65,6 @@ requirejs.optimize({
 
     exclude: [
         "jmrMapperModule",
-        "typedAs",
         "underscore",
         "jsutils"
     ]
@@ -86,7 +83,6 @@ requirejs.optimize({
     baseUrl: "../",
 
     paths: {
-        "typedAs": "node_modules/typedas/typedAs",
         "underscore": "node_modules/underscore/underscore-min",
         "jsutils": "node_modules/js.utils/target/jsutils-min",
 
@@ -124,7 +120,6 @@ requirejs.optimize({
         if (!counter) {
             counter++;
             result += "var underscore;";
-            //result += fs.readFileSync("./node_modules/typedas/typedAs.js") + "\n";
             //result += fs.readFileSync("./node_modules/underscore/underscore-min.js") + "\n";
         }
 
@@ -139,7 +134,6 @@ requirejs.optimize({
 
     include: ["jmrMapperModule"],
     excludeShallow: [
-        "typedAs",
         "underscore",
         "jsutils"
     ]
@@ -155,7 +149,6 @@ requirejs.optimize({
 
 //var concat = require('concat-files');
 //concat([
-//    'node_modules/typedas/typedAs.js',
 //    "node_modules/underscore/underscore-min.js",
 //    "node_modules/js.utils/jsutils-min.js",
 //    './tmr-mapper-min.js',
