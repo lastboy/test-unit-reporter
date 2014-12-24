@@ -2,12 +2,12 @@ Test Model Reporter
 =====================
 
 JavaScript hierarchical object model<br/>
-This module can be easily extended to any report style you need.<br/>
-Currently this module supports JUnit xml and Jasmine reporter
+Any model type can validate, generate a report and write it to the file system<br/>
+Currently JUnit xml and Jasmine reporters are supported:
+* **JUnit** Generates JUnit XML files according to the junit.xsd
+* **Jasmine** Generates spec files 
 
 ## How To
-The JUnit classes are available with their properties according to the junit.xsd
-
 
 ### First create a simple model
 The model can be crated using an API like so:
