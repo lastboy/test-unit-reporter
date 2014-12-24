@@ -31,7 +31,9 @@
     "xml",
     "jenkins",
     "ant",
-    "report"
+    "report",
+    "jasmine",
+    "bdd"
   ],
   "dependencies": {
     "underscore": "~1.5.2",
