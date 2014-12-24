@@ -7,34 +7,35 @@ var jmrOnReady = function () {
  */
 require.config({
 
-    baseUrl: ".",
+    baseUrl: "",
 
     paths: {
         "underscore": "node_modules/underscore/underscore-min",
         "jsutils": "node_modules/js.utils/target/jsutils-require-min",
+        "libDomReady": "lib/domReady",
 
-        "jmrModule": "./tmr",
-        "jmrBaseModule": "./src/model/Base",
-        "jmrMapperModule": "./src/model/Mapper",
-        "jmrEnumModule": "./src/model/Enum",
-        "jmrUtilsModule": "./src/utils/Utils",
-        "jmrConfigModule": "./src/Config",
-        "jmrReporterModelModule": "./src/reporter/ReporterModel",
+        "jmrModule": "jmr",
+        "jmrBaseModule": "src/model/Base",
+        "jmrMapperModule": "src/model/junit/Mapper",
+        "jmrEnumModule": "src/model/junit/Enum",
+        "jmrUtilsModule": "src/utils/Utils",
+        "jmrConfigModule": "src/Config",
+        "jmrReporterModelModule": "src/reporter/ReporterModel",
 
-        "jmrModelErrModule": "./src/model/Error",
-        "jmrModelFailureModule": "./src/model/Failure",
-        "jmrModelSkippedModule": "./src/model/Skipped",
-        "jmrModelTCaseModule": "./src/model/TestCase",
-        "jmrModelTSuiteModule": "./src/model/TestSuite",
-        "jmrModelTSuitesModule": "./src/model/TestSuites",
-        "jmrModelSystemModule": "./src/model/System",
-        "jmrModelUtilsModule": "./src/model/Utils",
+        "jmrModelErrModule": "src/model/junit/Error",
+        "jmrModelFailureModule": "src/model/junit/Failure",
+        "jmrModelSkippedModule": "src/model/junit/Skipped",
+        "jmrModelTCaseModule": "src/model/junit/TestCase",
+        "jmrModelTSuiteModule": "src/model/junit/TestSuite",
+        "jmrModelTSuitesModule": "src/model/junit/TestSuites",
+        "jmrModelSystemModule": "src/model/junit/System",
+        "jmrModelUtilsModule": "src/model/Utils",
 
         // junit
-        "jmrReporterJunitModule": "./src/reporter/junit/Reporter",
+        "jmrReporterJunitModule": "src/reporter/junit/Reporter",
 
-        // TODO developer mode : for the browser build first the templates bundle - node ./src/reporter/TemplateBuilder.js
-        "jmrTemplatesBundleModule": "./src/reporter/tplbundle"
+        // TODO developer mode : for the browser build first the templates bundle - node src/reporter/TemplateBuilder.js
+        "jmrTemplatesBundleModule": "src/reporter/tplbundle"
 
 
     },
@@ -44,35 +45,37 @@ require.config({
             exports: "_"
         },
         "jsutils": {
-            deps: ["underscore"],
-            exports: "jsutils"
-        },        
+            exports: "jsutils"  
+        },
         "jmrReporterJunitModule": {
-            deps: ["jsutils"]
+            deps: ["underscore", "jsutils"]
         },
         "jmrModule": {
-            deps: ["jsutils"]
+            deps: ["underscore", "jsutils"]
         },
         "jmrConfigModule": {
-            deps: ["jsutils"]
+            deps: ["underscore", "jsutils"]
         }
     },
     
     out: "tmr-min.js",
-    name: "tmr"
+    name: "jmr"
 
 });
 
 
-require(["jsutils"], function () {
+//require(["jsutils"], function () {
+//
+//    
+//});
 
+
+require(["libDomReady", "jmrModule"], function (domReady, jmrModule) {
+    debugger;
+    domReady(function () {
+        debugger;
+        jmr = jmrModule;
+    });
     
 });
 
-/*
-TODO need to be fixed ... it fails on building the minified version
-require(["jmrModule"], function (jmrModule) {
-    jmr = jmrModule;
-    
-});
-*/

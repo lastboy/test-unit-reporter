@@ -16,28 +16,28 @@ requirejs.optimize({
         "underscore": "node_modules/underscore/underscore-min",
         "jsutils": "node_modules/js.utils/target/jsutils-min",
 
-        "jmrModule": "tmr",
-        "jmrBaseModule": "./src/model/Base",
-        "jmrMapperModule": "./src/model/Mapper",
-        "jmrEnumModule": "./src/model/Enum",
-        "jmrUtilsModule": "./src/utils/Utils",
-        "jmrConfigModule": "./src/Config",
-        "jmrReporterModelModule": "./src/reporter/ReporterModel",
+        "jmrModule": "jmr",
+        "jmrBaseModule": "src/model/Base",
+        "jmrMapperModule": "src/model/junit/Mapper",
+        "jmrEnumModule": "src/model/junit/Enum",
+        "jmrUtilsModule": "src/utils/Utils",
+        "jmrConfigModule": "src/Config",
+        "jmrReporterModelModule": "src/reporter/ReporterModel",
 
-        "jmrModelErrModule": "./src/model/Error",
-        "jmrModelFailureModule": "./src/model/Failure",
-        "jmrModelSkippedModule": "./src/model/Skipped",
-        "jmrModelTCaseModule": "./src/model/TestCase",
-        "jmrModelTSuiteModule": "./src/model/TestSuite",
-        "jmrModelTSuitesModule": "./src/model/TestSuites",
-        "jmrModelSystemModule": "./src/model/System",
-        "jmrModelUtilsModule": "./src/model/Utils",
+        "jmrModelErrModule": "src/model/junit/Error",
+        "jmrModelFailureModule": "src/model/junit/Failure",
+        "jmrModelSkippedModule": "src/model/junit/Skipped",
+        "jmrModelTCaseModule": "src/model/junit/TestCase",
+        "jmrModelTSuiteModule": "src/model/junit/TestSuite",
+        "jmrModelTSuitesModule": "src/model/junit/TestSuites",
+        "jmrModelSystemModule": "src/model/junit/System",
+        "jmrModelUtilsModule": "src/model/Utils",
 
         // junit
-        "jmrReporterJunitModule": "./src/reporter/junit/Reporter",
+        "jmrReporterJunitModule": "src/reporter/junit/Reporter",
 
-        // TODO developer mode : for the browser build first the templates bundle - node ./src/reporter/TemplateBuilder.js
-        "jmrTemplatesBundleModule": "./src/reporter/tplbundle"
+        // TODO developer mode : for the browser build first the templates bundle - node src/reporter/TemplateBuilder.js
+        "jmrTemplatesBundleModule": "src/reporter/tplbundle"
 
 
     },
@@ -51,7 +51,7 @@ requirejs.optimize({
         if (!counter) {
             counter++;
             result += "var underscore;";
-            //result += fs.readFileSync("./node_modules/underscore/underscore-min.js") + "\n";
+            //result += fs.readFileSync("node_modules/underscore/underscore-min.js") + "\n";
         }
 
         result += require('amdclean').clean(contents);
@@ -86,28 +86,28 @@ requirejs.optimize({
         "underscore": "node_modules/underscore/underscore-min",
         "jsutils": "node_modules/js.utils/target/jsutils-min",
 
-        "jmrModule": "tmr",
-        "jmrBaseModule": "./src/model/Base",
-        "jmrMapperModule": "./src/model/Mapper",
-        "jmrEnumModule": "./src/model/Enum",
-        "jmrUtilsModule": "./src/utils/Utils",
-        "jmrConfigModule": "./src/Config",
-        "jmrReporterModelModule": "./src/reporter/ReporterModel",
+        "jmrModule": "jmr",
+        "jmrBaseModule": "src/model/Base",
+        "jmrMapperModule": "src/model/junit/Mapper",
+        "jmrEnumModule": "src/model/junit/Enum",
+        "jmrUtilsModule": "src/utils/Utils",
+        "jmrConfigModule": "src/Config",
+        "jmrReporterModelModule": "src/reporter/ReporterModel",
 
-        "jmrModelErrModule": "./src/model/Error",
-        "jmrModelFailureModule": "./src/model/Failure",
-        "jmrModelSkippedModule": "./src/model/Skipped",
-        "jmrModelTCaseModule": "./src/model/TestCase",
-        "jmrModelTSuiteModule": "./src/model/TestSuite",
-        "jmrModelTSuitesModule": "./src/model/TestSuites",
-        "jmrModelSystemModule": "./src/model/System",
-        "jmrModelUtilsModule": "./src/model/Utils",
+        "jmrModelErrModule": "src/model/junit/Error",
+        "jmrModelFailureModule": "src/model/junit/Failure",
+        "jmrModelSkippedModule": "src/model/junit/Skipped",
+        "jmrModelTCaseModule": "src/model/junit/TestCase",
+        "jmrModelTSuiteModule": "src/model/junit/TestSuite",
+        "jmrModelTSuitesModule": "src/model/junit/TestSuites",
+        "jmrModelSystemModule": "src/model/junit/System",
+        "jmrModelUtilsModule": "src/model/Utils",
 
         // junit
-        "jmrReporterJunitModule": "./src/reporter/junit/Reporter",
+        "jmrReporterJunitModule": "src/reporter/junit/Reporter",
 
-        // TODO developer mode : for the browser build first the templates bundle - node ./src/reporter/TemplateBuilder.js
-        "jmrTemplatesBundleModule": "./src/reporter/tplbundle"
+        // TODO developer mode : for the browser build first the templates bundle - node src/reporter/TemplateBuilder.js
+        "jmrTemplatesBundleModule": "src/reporter/tplbundle"
 
 
     },
@@ -120,7 +120,7 @@ requirejs.optimize({
         if (!counter) {
             counter++;
             result += "var underscore;";
-            //result += fs.readFileSync("./node_modules/underscore/underscore-min.js") + "\n";
+            //result += fs.readFileSync("node_modules/underscore/underscore-min.js") + "\n";
         }
 
         result += require('amdclean').clean(contents);
@@ -129,7 +129,7 @@ requirejs.optimize({
 
     findNestedDependencies: false,
     wrap: false,
-    //optimize: 'none',
+    optimize: 'none',
 
 
     include: ["jmrMapperModule"],
@@ -151,8 +151,8 @@ requirejs.optimize({
 //concat([
 //    "node_modules/underscore/underscore-min.js",
 //    "node_modules/js.utils/jsutils-min.js",
-//    './tmr-mapper-min.js',
-//    './tmr-base-min.js'
+//    'tmr-mapper-min.js',
+//    'tmr-base-min.js'
 //], 'tmr-min.js', function () {
 //    console.log('tmr-min.js created');
 //});

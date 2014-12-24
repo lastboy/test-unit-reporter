@@ -122,14 +122,18 @@ if (typeof exports !== 'undefined') {
         (function () {
 
             var _requireIndex = {
-                "jmrModelErrModule": "./src/model/Error.js",
-                "jmrModelFailureModule": "./src/model/Failure.js",
-                "jmrModelSkippedModule": "./src/model/Skipped.js",
-                "jmrModelTCaseModule": "./src/model/TestCase.js",
-                "jmrModelTSuiteModule": "./src/model/TestSuite.js",
-                "jmrModelTSuitesModule": "./src/model/TestSuites.js",
-                "jmrModelSystemModule": "./src/model/System.js",
+                "jmrModelErrModule": "./src/model/junit/Error.js",
+                "jmrModelFailureModule": "./src/model/junit/Failure.js",
+                "jmrModelSkippedModule": "./src/model/junit/Skipped.js",
+                "jmrModelTCaseModule": "./src/model/junit/TestCase.js",
+                "jmrModelTSuiteModule": "./src/model/junit/TestSuite.js",
+                "jmrModelTSuitesModule": "./src/model/junit/TestSuites.js",
+                "jmrModelSystemModule": "./src/model/junit/System.js",
                 "jmrModelUtilsModule": "./src/model/Utils.js",
+                
+                "jmrModelDescribeModule": "./src/model/jasmine/Describe.js",
+                "jmrModelItModule": "./src/model/jasmine/It.js",
+                "jmrModelCodeModule": "./src/model/jasmine/Code.js",
 
                 "jmrUtilsModule": "./src/utils/Utils.js",
                 "jmrUtilsAntModule": "./src/utils/AntUtils.js"
@@ -179,11 +183,17 @@ if (typeof exports !== 'undefined') {
 
         _jmrModule.write = function (file, data) {
 
+            var beautify = require('js-beautify').js_beautify,
+                path = require("path");
+            
             if (!file) {
                 _log.error("[TestUnitReporter] 'file' argument for method print is required")
             }
 
             if (!_fs.existsSync(file)) {
+                if (data && path.extname(file) === ".js") {
+                    data = beautify(data, { indent_size: 4 });
+                }
                 _fs.writeFileSync(file, data);
             } else {
                 _log.warn("[TestUnitReporter] file: ", file, " already exists")

@@ -1,6 +1,6 @@
 var jmrOnReady = function () {
     console.log("Test Model Reporter is ready (jmrOnReady callback can be overriden [e.g. jmrOnReady=function(tmr){}]");
-};
+}, jmr;
 
 /**
  * RequireJS Main Configuration
@@ -12,8 +12,8 @@ require.config({
     paths: {
         "underscore": "node_modules/underscore/underscore-min",
         "jsutils": "node_modules/js.utils/target/jsutils-require-min",
-        "jmr-lib": "../target/tmr-require-min",
-        "testunit": "./test/test"
+        "jmr": "target/tmr-require-min",
+        "testunit": "test/test"
 
        
     },
@@ -21,18 +21,19 @@ require.config({
     shim: {
         'underscore': {
             exports: "_"
-        },
-        "jsutils": {
-            deps: ["underscore"],
+        },        
+        'jsutils': {
+            deps: ['underscore'],
             exports: "jsutils"
         },
-        "jmr-lib": {
-            deps: ["jsutils"],
+        "jmr": {
+            deps: ['underscore', "jsutils"],
             exports: "jmr"
         },
         "testunit": {
-            "deps": ["jmr-lib"]
+            deps: ['jmr']
         }
+        
     },
 
     name: "tmrweb"
@@ -40,9 +41,8 @@ require.config({
 });
 
 
-
 require(["testunit"], function (test) {
 
     jmr.listen(test.jmrOnReady);
-   
+    
 });

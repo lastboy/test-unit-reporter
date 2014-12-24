@@ -38,7 +38,7 @@ if (typeof exports !== 'undefined') {
         // nodejs support
 
         var _enum = require("./Enum.js"),
-            _base = require("./Base.js");
+            _base = require("./../Base.js");
 
         _jmrModuleTestCase = new _jmrModuleTestCaseClass({base: _base});
 

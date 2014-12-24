@@ -9,24 +9,21 @@ var _jmrModuleObject = function () {
         _vars = {};
 
     function _loadmapper(callback) {
-        if (!_vars.mapper) {
-            if (typeof exports !== 'undefined') {
-                if (typeof module !== 'undefined' && module.exports) {
-                    _vars.mapper = require("./Mapper.js");
-                }
-            } else {
-                if (!_vars.mapperwait) {
-                    _vars.mapperwait = 1;
-                    require(["jmrMapperModule"], function (mapper) {
-                        _vars.mapper = mapper;
-                        _vars.mapperwait = 0;
-                        if (callback) {
-                            callback.call(this, mapper)
-                        }
-                    });
-                }
+        if (typeof exports !== 'undefined') {
+            if (typeof module !== 'undefined' && module.exports) {
+                _vars.mapper = require("./" + global.jmr.reporter.get("name") + "/Mapper.js");
             }
-
+        } else {
+            if (!_vars.mapperwait) {
+                _vars.mapperwait = 1;
+                require(["jmrMapperModule"], function (mapper) {
+                    _vars.mapper = mapper;
+                    _vars.mapperwait = 0;
+                    if (callback) {
+                        callback.call(this, mapper)
+                    }
+                });
+            }
         }
     }
 
@@ -358,14 +355,14 @@ if (typeof exports !== 'undefined') {
 
     }
 } else {
-    define(["jmrUtilsModule", "jmrConfigModule", "jmrTemplatesBundleModule"], function ( utils, jmrconfig, tplbundle) {
+    define(["jmrUtilsModule", "jmrConfigModule", "jmrTemplatesBundleModule"], function (utils, jmrconfig, tplbundle) {
 
         _jmrModuleObject.internal({
             _: _,
             jsutilsobj: jsutils.jsutilsObject,
             utils: utils,
             log: utils.logger(),
-            tplutils: jsutilsTemplate,
+            tplutils: jsutils.jsutilsTemplate,
             jmrconfig: jmrconfig,
             tplbundle: tplbundle
         });

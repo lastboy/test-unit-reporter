@@ -1,6 +1,5 @@
 var process1, process2;
-module.exports = function(callback) {
-
+module.exports = function(callback) {    
     var os = require("os"),
         fs = require("fs"),
         spawn = require('child_process').spawn,
@@ -93,6 +92,9 @@ module.exports = function(callback) {
             files.forEach(function(file) {
                 var name = "target/" + file;
                 _mv("./build/" + file, name, callback);
+
+                console.log("\n\n\NOTE!!! ******* at the require-min file on copy \"underscore\" is replaced with \".\" **************\n\n\n")
+
             });
 
         });

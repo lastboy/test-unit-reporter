@@ -32,7 +32,7 @@ if (typeof exports !== 'undefined') {
         // nodejs support
 
         var _enum = require("./Enum.js"),
-            _base = require("./Base.js"),
+            _base = require("./../Base.js"),
             _jsutils = require("js.utils"),
 
             _jmrModuleSkipped = new _jmrModuleSkippedClass({base: _base, jsutils: _jsutils, enumm: _enum});
@@ -53,7 +53,7 @@ if (typeof exports !== 'undefined') {
         _jmrskippedpec.type = _enum.SKIPPED;
         _base.add(_jmrskippedpec);
 
-        _jmrModuleSkipped = new _jmrModuleSkippedClass({base: _base, jsutils:{Object:jsutilsObject}, enumm: _enum});
+        _jmrModuleSkipped = new _jmrModuleSkippedClass({base: _base, jsutils:{Object:jsutils.jsutilsObject}, enumm: _enum});
 
 
         return _jmrModuleSkipped;

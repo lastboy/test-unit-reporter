@@ -81,7 +81,7 @@ if (typeof exports !== 'undefined') {
         module.exports = _jmrReporterModel.model;
     }
 } else {
-    define(["underscore"], function (underscoreref) {
+    define([], function () {
         // browser support
 
         _jmrReporterModel.internal({_: _});

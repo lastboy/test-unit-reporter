@@ -7,7 +7,7 @@ var _jmrConfigModule,
 
         return {
             reporters: [
-                "junit"
+                "junit", "jasmine"
             ],
 
             getDefaultReporter: function () {

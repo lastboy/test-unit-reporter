@@ -1,12 +1,9 @@
 Test Model Reporter
 =====================
 
-Create a pure JavaScript object mode based on JUnit methodology and produce a report based on that model.<br/>
+JavaScript hierarchical object model<br/>
 This module can be easily extended to any report style you need.<br/>
-Currently this module supports JUnit xml reporter including:
-
-* Report utility that generates a local HTML report for you to validate before it gets to the e.g. Jenkins
-
+Currently this module supports JUnit xml and Jasmine reporter
 
 ## How To
 The JUnit classes are available with their properties according to the junit.xsd
@@ -94,6 +91,35 @@ In case you generates an object with all of your data, much simpler to burst it 
         }
     });
 
+
+### Jasmine example
+
+    var describe = tmr.create({
+        type: "model.jas.describe",
+        data: {
+            title: "A suite is just a function",
+            body:[
+                {
+                    type:"model.jas.code",
+                    data: {
+                        body: "var a;"
+                    }
+                },
+                {
+                    type: "model.jas.it",
+                    data: {
+                        title: "and so is a spec",
+                        body: [{
+                            type:"model.jas.code",
+                            data: {
+                                body: "a = true; expect(a).toBe(true);"
+                            }
+                        }]
+                    }
+                }
+            ]
+        }
+    });
 
 ## Browser Support
 
@@ -193,4 +219,4 @@ In case you generates an object with all of your data, much simpler to burst it 
     + implement report method (optional)
 
 
-See ./src/reporter/junit reporter for more information
+See ./src/reporter/junit and ./src/reporter/jasmine reporters for more information

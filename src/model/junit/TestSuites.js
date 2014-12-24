@@ -1,32 +1,24 @@
-var _jmrtsspec =  {
+var _jmrtssspec =  {
         spec: {
             disabled: undefined,
             errors: undefined,
             failures: undefined,
             tests: undefined,
-            time: undefined,
-            hostname: undefined,
-            id: undefined,
             name: undefined,
-            package: undefined,
-            skipped: undefined,
-            tests: undefined,
-            time: undefined,
-            timestamp: undefined
+            time: undefined
         },
-        tpl: "testsuite",
+        tpl: "testsuites",
         clazz: function (config) {
 
         }
     },
 
-    _jmrModuleTestSuite,
-    _jmrModuleTestSuiteClass = function (vars) {
+    _jmrModuleTestSuites,
+    _jmrModuleTestSuitesClass = function (vars) {
 
         function _TestClass(config) {
             vars.base.initTestClass.call(this, config);
         }
-
 
         /**
          * Collection for dynamic data such as: errors, failures and tests attributes.
@@ -61,26 +53,13 @@ var _jmrtsspec =  {
             if (children) {
 
                 children.forEach(function (child) {
-                    var childrenLcl;
                     if (child) {
-                        if (child.getType() === vars.enumm.TESTCASE) {
+                        if (child.getType() === vars.enumm.TESTSUITE) {
 
-                            me.collection.tests++;
+                            me.collection.errors += (child.get("errors") || 0);
+                            me.collection.failures += (child.get("failures") || 0);
+                            me.collection.tests += (child.get("tests") || 0);
 
-                            childrenLcl = child.children();
-                            if (childrenLcl) {
-
-                                childrenLcl.forEach(function (childlcl) {
-                                    if (childlcl) {
-                                        if (childlcl.getType() === vars.enumm.FAILURE) {
-                                            me.collection.failures++;
-
-                                        } else if (childlcl.getType() === vars.enumm.ERROR) {
-                                            me.collection.errors++;
-                                        }
-                                    }
-                                });
-                            }
                         }
                     }
                 });
@@ -88,7 +67,6 @@ var _jmrtsspec =  {
 
             return this.collection;
         };
-
 
         return {
 
@@ -107,15 +85,15 @@ if (typeof exports !== 'undefined') {
         // nodejs support
 
         var _enum = require("./Enum.js"),
-            _base = require("./Base.js"),
+            _base = require("./../Base.js"),
             _jsutils = require("js.utils"),
 
-            _jmrModuleTestSuite = new _jmrModuleTestSuiteClass({base: _base, jsutils: _jsutils, enumm: _enum});
+        _jmrModuleTestSuites = new _jmrModuleTestSuitesClass({base: _base, jsutils: _jsutils, enumm: _enum});
 
-        _jmrtsspec.type = _enum.TESTSUITE;
-        _base.add(_jmrtsspec);
+        _jmrtssspec.type = _enum.TESTSUITES;
+        _base.add(_jmrtssspec);
 
-        module.exports = _jmrModuleTestSuite;
+        module.exports = _jmrModuleTestSuites;
 
     }
 } else {
@@ -125,11 +103,12 @@ if (typeof exports !== 'undefined') {
         _base
         ) {
 
-        _jmrtsspec.type = _enum.TESTSUITE;
-        _base.add(_jmrtsspec);
+        _jmrtssspec.type = _enum.TESTSUITES;
+        _base.add(_jmrtssspec);
 
-        _jmrModuleTestSuite = new _jmrModuleTestSuiteClass({base: _base, jsutils:{Object:jsutilsObject}, enumm: _enum});
+        _jmrModuleTestSuites = new _jmrModuleTestSuitesClass({base: _base, jsutils:{Object:jsutils.jsutilsObject}, enumm: _enum});
 
-        return _jmrModuleTestSuite;
+
+        return _jmrModuleTestSuites;
     });
 }

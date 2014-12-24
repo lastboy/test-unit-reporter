@@ -1,7 +1,7 @@
 {
   "name": "test-model-reporter",
   "description": "Create a pure JavaScript object model based on JUnit methodology",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "Arik Lewin (https://github.com/lastboy)",
   "homepage": "https://github.com/lastboy",
   "repository": {
@@ -17,8 +17,9 @@
       "url": "http://github.com/lastboy/test-unit-reporter/LICENSE-MIT"
     }
   ],
-  "main": "tmr.js",
+  "main": "jmr.js",
   "scripts": {
+    "install": "node installer.js ",
     "test": "node ./test/test.js"
   },
   "engines": {
@@ -38,7 +39,8 @@
     "fs.extra": "~1.2.1",
     "xml2js": "~0.2.8",
     "requirejs": "~2.1.8",
-    "colors": "^0.6.2"
+    "colors": "^0.6.2",
+    "js-beautify": "^1.5.4"
   },
   "devDependencies": {
     "ant": "~0.2.0",
@@ -47,7 +49,9 @@
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-clean": "~0.4.0"
+    "grunt-contrib-clean": "~0.4.0",
+    "package-script": "0.0.8",
+    "jshint": "^2.5.11"
   },
   "contributors": [
     "Arik Lewin (https://github.com/lastboy)"

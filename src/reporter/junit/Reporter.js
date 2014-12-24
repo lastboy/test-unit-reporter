@@ -67,7 +67,7 @@ var _jmrJunitReporter,
                 getTemplateURL: (vars.getTemplateUrl || _getTemplateURL),
 
                 validate: (function () {
-                    vars.log.warn("[Test Model Reporter] This is an Obsolete functionality");
+                    vars.log.warn("[Test Model Reporter] Not Implemented");
                 }),
 
                 report: (vars.report || _report)

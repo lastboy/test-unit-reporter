@@ -1,16 +1,15 @@
-var _jmrerrorpec =   {
+var _jmrsystempec =  {
         spec: {
-            message: undefined,
-            type: undefined
+            systemtype: "out" // optional attributes (out|err)
         },
-        tpl: "error",
+        tpl: "system",
         clazz: function(config) {
 
         }
     },
 
-    _jmrModuleError,
-    _jmrModuleErrorClass = function (vars) {
+    _jmrModuleSystem,
+    _jmrModuleSystemClass = function (vars) {
 
         function _TestClass(config) {
             vars.base.initTestClass.call(this, config);
@@ -33,15 +32,15 @@ if (typeof exports !== 'undefined') {
         // nodejs support
 
         var _enum = require("./Enum.js"),
-            _base = require("./Base.js"),
+            _base = require("./../Base.js"),
             _jsutils = require("js.utils"),
 
-            _jmrModuleError = new _jmrModuleErrorClass({base: _base, jsutils: _jsutils, enumm: _enum});
+            _jmrModuleSystem = new _jmrModuleSystemClass({base: _base, jsutils: _jsutils, enumm: _enum});
 
-        _jmrerrorpec.type = _enum.ERROR;
-        _base.add(_jmrerrorpec);
+        _jmrsystempec.type = _enum.SYSTEM;
+        _base.add(_jmrsystempec);
 
-        module.exports = _jmrModuleError;
+        module.exports = _jmrModuleSystem;
 
     }
 } else {
@@ -51,11 +50,12 @@ if (typeof exports !== 'undefined') {
         _base
         ) {
 
-        _jmrerrorpec.type = _enum.ERROR;
-        _base.add(_jmrerrorpec);
+        _jmrsystempec.type = _enum.SYSTEM;
+        _base.add(_jmrsystempec);
 
-        _jmrModuleError = new _jmrModuleErrorClass({base: _base, jsutils:{Object:jsutilsObject}, enumm: _enum});
+        _jmrModuleSystem = new _jmrModuleSystemClass({base: _base, jsutils:{Object:jsutils.jsutilsObject}, enumm: _enum});
 
-        return _jmrModuleError;
+
+        return _jmrModuleSystem;
     });
 }

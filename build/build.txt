@@ -1,3 +1,17 @@
+Build: grunt
+--------------
+Tests: 
+1) node: sudo npm test
+2) web flat:  node test/web-server.js test/index.html
+3) web require:   node test/web-server.js test/index-require.html
+
+
+
+
+
+
+
+========================================================================================================
 Build all
 ==============
 

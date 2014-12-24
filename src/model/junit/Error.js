@@ -1,16 +1,16 @@
-var _jmrfailurepec =   {
+var _jmrerrorpec =   {
         spec: {
             message: undefined,
             type: undefined
         },
-        tpl: "failure",
+        tpl: "error",
         clazz: function(config) {
 
         }
     },
 
-    _jmrModuleFailure,
-    _jmrModuleFailureClass = function (vars) {
+    _jmrModuleError,
+    _jmrModuleErrorClass = function (vars) {
 
         function _TestClass(config) {
             vars.base.initTestClass.call(this, config);
@@ -33,15 +33,15 @@ if (typeof exports !== 'undefined') {
         // nodejs support
 
         var _enum = require("./Enum.js"),
-            _base = require("./Base.js"),
+            _base = require("./../Base.js"),
             _jsutils = require("js.utils"),
 
-            _jmrModuleFailure = new _jmrModuleFailureClass({base: _base, jsutils: _jsutils, enumm: _enum});
+            _jmrModuleError = new _jmrModuleErrorClass({base: _base, jsutils: _jsutils, enumm: _enum});
 
-        _jmrfailurepec.type = _enum.FAILURE;
-        _base.add(_jmrfailurepec);
+        _jmrerrorpec.type = _enum.ERROR;
+        _base.add(_jmrerrorpec);
 
-        module.exports = _jmrModuleFailure;
+        module.exports = _jmrModuleError;
 
     }
 } else {
@@ -51,12 +51,11 @@ if (typeof exports !== 'undefined') {
         _base
         ) {
 
-        _jmrfailurepec.type = _enum.FAILURE;
-        _base.add(_jmrfailurepec);
+        _jmrerrorpec.type = _enum.ERROR;
+        _base.add(_jmrerrorpec);
 
-        _jmrModuleFailure = new _jmrModuleFailureClass({base: _base, jsutils:{Object:jsutilsObject}, enumm: _enum});
+        _jmrModuleError = new _jmrModuleErrorClass({base: _base, jsutils:{Object:jsutils.jsutilsObject}, enumm: _enum});
 
-
-        return _jmrModuleFailure;
+        return _jmrModuleError;
     });
 }
