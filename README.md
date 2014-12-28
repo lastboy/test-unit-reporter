@@ -94,6 +94,8 @@ In case you generates an object with all of your data, much simpler to burst it 
 
 ### Jasmine example
 
+Note: to be able to test the specs using node run: node installer.js or install jasmine-node module.
+
     var describe = tmr.create({
         type: "model.jas.describe",
         data: {
@@ -119,7 +121,7 @@ In case you generates an object with all of your data, much simpler to burst it 
                 }
             ]
         }
-    });
+    });        
 
 ## Browser Support
 
