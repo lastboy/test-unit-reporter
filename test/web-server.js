@@ -35,6 +35,7 @@ var server = function() {
             var path = (config.path || "."),
                 port = (config.port || "8089");
 
+            console.log("listening to: " ,port);
             if (!path || (path && !_fs.existsSync(path))) {
                 return undefined;
             }
@@ -106,6 +107,9 @@ var server = function() {
 
 }();
 
-server.start({filename: process.argv[2]}, function() {
+server.start({
+    filename: process.argv[2],
+    port: (process.argv[3] || 8089)
+}, function() {
 
 });

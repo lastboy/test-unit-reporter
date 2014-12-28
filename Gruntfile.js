@@ -23,7 +23,7 @@ module.exports = function (grunt) {
                 ] }
             },
             noamdall: {
-                files: { './target/tmr-min-all.js': [ 
+                files: { './target/tmr-min-all.js': [
                     "./node_modules/underscore/underscore-min.js",
                     "./node_modules/js.utils/target/jsutils-min.js",
                     "./target/tmr-min.js"
@@ -87,18 +87,50 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['clean:tests'], function () {
 
-        var child = grunt.util.spawn({cmd: "npm",
-            args: ["test"],
-            opts: { stdio: 'inherit'}
+        var open = require("open"),
+            ps = require("package-script"),
+            me = this;
+//
+//        ps.spawn([{
+//            command: "npm",
+//            args: ["test"]
+//
+//        }], {}, function () {          
+//
+//           
+//            
+//        });
 
-        }, function (error, result, code) {
-            if (error) {
-                console.error(error);
-            }
-
-            console.log("[Test] code", code, " result: ", result);
+       
+        ps.spawn([{
+            command: "node",
+            args: ["test/web-server.js", "test/index.html", "8081"],
+            spawnopt: { stdio: 'inherit'}
+        }],{log: true}, function () {
+            
+                     
         });
+        
+         ps.spawn([{
+            command: "node",
+            args: ["test/web-server.js", "test/index-require.html", "8082"],
+            spawnopt: { stdio: 'inherit'}
+        }],{log: true}, function () {
+            
+                     
+        });
+        
+        this.async();
+        open("http://localhost:8081", "firefox");
+        
+        open("http://localhost:8082", "firefox");
+        
+        
+        setTimeout(function() {
+            process.exit(0);
+        }, 15000);
 
+      
 
     });
 

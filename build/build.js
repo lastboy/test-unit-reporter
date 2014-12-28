@@ -1,7 +1,8 @@
 var process1, process2;
 module.exports = function(callback) {    
     var os = require("os"),
-        fs = require("fs"),
+        path = require("path"),
+        fs = require("fs.extra"),
         spawn = require('child_process').spawn,
         command,
         args,
@@ -11,19 +12,17 @@ module.exports = function(callback) {
 
 
     function _mv(srcpath, targetpath, callback) {
-        var source = fs.createReadStream(srcpath);
-        var dest = fs.createWriteStream(targetpath);
+        
+        console.log("......................... moving:", path.resolve(srcpath), path.resolve(targetpath)); 
+        fs.move(path.resolve(srcpath), path.resolve(targetpath), function (err) {
+            if (err) {
+                throw err;
+            }
 
-        source.pipe(dest);
-        source.on('end', function() {
-            fs.unlinkSync(srcpath);
             if (callback) {
                 callback.call(this);
 
             }
-        });
-        source.on('error', function(err) {
-            console.error(err);
         });
     }
 
@@ -72,8 +71,9 @@ module.exports = function(callback) {
 
             var files = [
                 "tmr-base-min.js",
-                "tmr-mapper-min.js"
-            ]
+                "tmr-mapper-min.js",
+                "tmr-require-min.js"
+            ];
 
             // copy artifact to the target folder
             if (fs.existsSync("target")) {
