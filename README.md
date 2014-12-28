@@ -96,6 +96,8 @@ In case you generates an object with all of your data, much simpler to burst it 
 
 Note: to be able to test the specs using node run: node installer.js or install jasmine-node module.
 
+    tmr.setReporter("jasmine");
+    
     var describe = tmr.create({
         type: "model.jas.describe",
         data: {
