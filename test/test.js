@@ -139,7 +139,12 @@ function jasmineAPITest(tmr) {
                         body: [{
                             type:"model.jas.code",
                             data: {
-                                body: "a = true; expect(a).toBe(true);"
+                                body: [{
+                                    type:"model.jas.code",
+                                    data: {
+                                        body: "var a;"
+                                    }
+                                }]                               
                             }
                         }]
                     }
@@ -161,10 +166,11 @@ function jasmineAPITest(tmr) {
             if (fs.existsSync(testfile)) {
                 fs.unlinkSync(testfile);
             }
-            tmr.write(testfile, out);
 
             // validate the report agains the junit xsd
-            console.log("\nValidating report, the report is: " + (tmr.validate(out) ? "valid" : "not valid"));
+            console.log("\nValidating Jasmine report, the report is: " + (tmr.validate(describe) ? "valid" : "not valid"));
+
+            tmr.write(testfile, out);
 
             require('package-script').spawn([
                 {

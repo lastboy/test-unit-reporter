@@ -124,7 +124,15 @@ Note: to be able to test the specs using node run: node installer.js or install 
             ]
         }
     });        
+    
+    
+    Model types: 
+    * **model.jas.describe** describe method
+    * **model.jas.it** it method
+    * **model.jas.code** code snippet 
 
+    Note: WIP, other Jasmine functionality will be supported.
+    
 ## Browser Support
 
 ### Usage

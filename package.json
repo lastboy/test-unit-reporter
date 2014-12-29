@@ -1,7 +1,7 @@
 {
   "name": "test-model-reporter",
   "description": "Create a pure JavaScript object model based on JUnit methodology",
-  "version": "0.1.81",
+  "version": "0.1.82",
   "author": "Arik Lewin (https://github.com/lastboy)",
   "homepage": "https://github.com/lastboy",
   "repository": {

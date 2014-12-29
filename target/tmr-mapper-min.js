@@ -427,8 +427,10 @@ var _jmrModuleObject = function () {
                         this.data[key] = config.data[key];
                     }
                 }
-                this.get = function (key) {
-                    return this.members[key];
+                this.getConfig = function (key) {
+                    return key in this.config ? this.config[key] : undefined;
+                }, this.get = function (key) {
+                    return key in this.members ? this.members[key] : undefined;
                 };
                 this.setall = function (item) {
                     var key, value;
