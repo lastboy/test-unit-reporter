@@ -372,6 +372,7 @@ var _jmrModuleObject = function () {
         _me = {
             internal: function (refs) {
                 _vars = refs;
+                _vars.tplutils.setMustache(true);
             },
             loadMapper: function (callback) {
                 _loadmapper(function (mapper) {
